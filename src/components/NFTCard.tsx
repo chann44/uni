@@ -5,10 +5,10 @@ export const NFTCard = () => {
   return (
     <>
       {/* header card */}
-      <div className="lg:flex space-y-10 lg:space-y-0 items-center">
+      <div className="lg:flex space-y-10 lg:space-y-0 items-center ">
         {/* header left card */}
-        <div className="lg:w-[50%] space-y-5  lg:space-y-8">
-          <div>
+        <div className="lg:w-[50%] space-y-5  lg:space-y-8 lg:pl-8">
+          <div className="">
             <p className="gradient-text mx-auto lg:mx-0">uniAsset.io</p>
             <h1 className="fluid text-white text-center font-extrabold lg:text-left leading-relaxed  ">
               Trade BlueChip NFT
@@ -21,16 +21,16 @@ export const NFTCard = () => {
             </p>
           </div>
           <div className="flex space-x-6 justify-center lg:justify-start  ">
-            <button className="bg-blueButton px-6 rounded-full lg:px-12 py-1">
+            <button className="btn-blue-shad bg-blueButton px-6 rounded-full sm:px-12 py-1">
               Explore
             </button>
-            <button className="bg-yellowButton px-6 rounded-full lg:px-16 py-1">
+            <button className="btn-yellow-shad bg-yellowButton px-6 rounded-full sm:px-16 py-1">
               Earn
             </button>
           </div>
         </div>
         {/* header right card */}
-        <div className=" lg:w-[50%] grid grid-cols-6 bg-secondary rounded-xl max-w-xs sm:max-h-[270px] sm:max-w-xl mx-auto">
+        <div className=" lg:w-[50%] grid grid-cols-6 bg-secondary rounded-xl max-w-xs sm:max-h-[270px] sm:max-w-2xl mx-auto">
           <div className="h-[270px] sm:col-start-1 sm:col-span-3 col-start-1 col-span-6 rounded-xl">
             <img
               className="h-[100%] w-[100%]  object-cover object-center rounded-xl"
@@ -38,8 +38,8 @@ export const NFTCard = () => {
               alt=" h-[100%] w-[100%]"
             />
           </div>
-          <div className="col-start-1 sm:col-start-4 sm:col-span-4 col-span-6 grid grid-cols-5 items-center px-6 min-h-[200px]">
-            <div className="col-start-1 col-span-2 border">
+          <div className="col-start-1 sm:col-start-4 sm:col-span-4 col-span-6 grid grid-cols-5 items-center px-6  min-h-[250px]">
+            <div className="col-start-1 col-span-2 ">
               <p className="text-text">uAzuki</p>
               <div className="flex text-pink ">
                 <div className="w-5">
@@ -52,7 +52,7 @@ export const NFTCard = () => {
             <div className="col-start-3 col-span-3">
               <LineChart />
             </div>
-            <div className="col-start-1 col-span-2 border">
+            <div className="col-start-1 col-span-2 ">
               <p className="text-text">uAzuki</p>
               <div className="flex text-pink ">
                 <div className="w-5">

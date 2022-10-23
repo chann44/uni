@@ -57,10 +57,10 @@ html {
   box-shadow: -15px 20px 40px rgba(15, 96, 218, 0.301961);
 }
 
-.bnt-yellow-shad {
+.btn-yellow-shad {
   box-shadow: -15px 20px 50px rgba(230, 219, 121, 0.301961);
 }
-.bnt-yellow-shad:hover {
+.btn-yellow-shad:hover {
   transition: all 200ms ease-in-out;
   box-shadow: 15px 20px 50px rgba(230, 219, 121, 0.301961);
   transform: scale(1.1);
