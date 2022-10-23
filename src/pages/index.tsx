@@ -1,26 +1,11 @@
-// import { useRouter } from 'next/router';
-
-import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
+import { Layout } from '@/components/Layout';
+import { NFTCard } from '@/components/NFTCard';
 
 const Index = () => {
-  // const router = useRouter();
-
   return (
-    <Main
-      meta={
-        <Meta
-          title="Next.js Boilerplate Presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
-        />
-      }
-    >
-      Hello world
-      {/* <img
-          src={`${router.basePath}/assets/images/nextjs-starter.png`}
-          alt="Nextjs starter"
-        /> */}
-    </Main>
+    <Layout>
+      <NFTCard />
+    </Layout>
   );
 };
 
