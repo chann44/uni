@@ -44,7 +44,11 @@ export const NFT = () => {
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
             <div className="lg:col-start-2 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
-              <input type="text" className=" rounded-full w-full " />
+              <input
+                type="text"
+                placeholder="0.0"
+                className="rounded-full w-full bg-transparent border text-center"
+              />
             </div>
 
             <div className="col-span-5 col-start-2 my-2"></div>
@@ -58,7 +62,11 @@ export const NFT = () => {
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
             <div className="lg:col-start-2 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
-              <input type="text" className=" rounded-full w-full " />
+              <input
+                type="text"
+                placeholder="0.0"
+                className=" text-center rounded-full w-full "
+              />
             </div>
             {/* 2 */}
             <div className="col-span-5 col-start-2 my-2"></div>
@@ -74,7 +82,11 @@ export const NFT = () => {
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
             <div className="lg:col-start-2 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
-              <input type="text" className=" rounded-full w-full " />
+              <input
+                type="text"
+                placeholder="0.0"
+                className="text-center rounded-full w-full "
+              />
             </div>
             {/* 2 */}
 
