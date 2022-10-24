@@ -38,30 +38,29 @@ export const NFT = () => {
           </div>
         </div>
         <div className="bg-secondary col-start-1 col-span-11 overflow-hidden lg:col-start-4 lg:col-span-3 p-8">
-          <div className="w-full  grid grid-cols-5 my-auto  ">
+          <div className="w-full grid grid-cols-7 my-auto  ">
             {/* 1 */}
-            <div className=" col-start-1 col-span-2 lg:col-span-2">
+            <div className=" col-start-1 col-span-2 lg:col-span-2  flex items-center">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
-            <div className="lg:col-start-3 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
+            <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
                 type="text"
                 placeholder="0.0"
                 className="rounded-full w-full bg-transparent border text-center p-1"
               />
             </div>
-
             <div className="col-span-5 col-start-2 my-1"></div>
-            <div className="col-start-1 col-span-2 lg:col-span-2 flex justify-center  ">
+            <div className=" col-start-1 col-span-2 lg:col-span-2  flex pl-4   ">
               <FaLink size={12} className="-rotate-45" />
             </div>
             <div className="col-start-2 col-span-3  "></div>
             <div className="col-span-5 col-start-2 my-2"></div>
             {/* 2 */}
-            <div className=" col-start-1 col-span-2 lg:col-span-2">
+            <div className=" col-start-1 col-span-2 lg:col-span-2 flex  items-center">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
-            <div className="lg:col-start-3 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
+            <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
                 type="text"
                 placeholder="0.0"
@@ -71,17 +70,15 @@ export const NFT = () => {
             {/* 2 */}
             <div className="col-span-5 col-start-2 my-1"></div>
             <div className="col-start-1 col-span-1"></div>
-            <div className="lg:col-start-3 col-start-3 flex justify-center col-span-3 ">
+            <div className="lg:col-start-2 col-start-3 flex justify-center col-span-6 ">
               <BsChevronDown size={26} />
             </div>
-
             {/* 2 */}
-
             <div className="col-span-5 col-start-2 my-2"></div>
-            <div className=" col-start-1 col-span-2 lg:col-span-2">
+            <div className=" col-start-1 col-span-2 lg:col-span-2 flex items-center">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
-            <div className="lg:col-start-3 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
+            <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
                 type="text"
                 placeholder="0.0"
@@ -89,11 +86,9 @@ export const NFT = () => {
               />
             </div>
             {/* 2 */}
-
             <div className="col-span-5 col-start-2 my-2"></div>
-
             <div className="col-start-1 col-span-1 "></div>
-            <div className="col-start-3 lg:col-start-3 col-span-3 ">
+            <div className="col-start-3 lg:col-start-2 col-span-6 ">
               <button className="w-full text-center text-xl lg:text-2xl text-blueText">
                 BUY
               </button>
