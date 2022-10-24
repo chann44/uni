@@ -6,8 +6,8 @@ import { LineChart } from './lineChart';
 export const NFT = () => {
   return (
     <>
-      <div className="grid-cols-11 lg:h-[310px] max-w-xs mx-auto sm:max-w-2xl lg:max-w-full rounded-xl h-auto  w-full bg-secondary grid ">
-        <div className="relative col-start-1  lg:col-span-3 col-span-11 h-[310px] rounded-xl">
+      <div className="grid-cols-10 lg:h-[310px] max-w-xs mx-auto sm:max-w-2xl lg:max-w-full rounded-xl h-auto  w-full  grid ">
+        <div className="relative col-start-1  lg:col-span-3 col-span-11 h-[310px] rounded-xl bg-secondary">
           <img
             className="h-full w-full  object-cover rounded-xl "
             src="https://ipfs.io/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/916.png"
@@ -37,7 +37,7 @@ export const NFT = () => {
             </div>
           </div>
         </div>
-        <div className="col-start-1 col-span-11 lg:col-start-4  lg:col-span-4 px-6 py-8   ">
+        <div className="bg-secondary col-start-1 col-span-11 overflow-hidden lg:col-start-4 lg:col-span-4 px-6  py-8 ">
           <div className="w-full  grid grid-cols-5 my-auto  ">
             {/* 1 */}
             <div className=" col-start-1 col-span-2 lg:col-span-1">
@@ -94,28 +94,28 @@ export const NFT = () => {
 
             <div className="col-start-1 col-span-1 "></div>
             <div className="col-start-3 lg:col-start-2 col-span-3 ">
-              <p className="text-center text-xl lg:text-2xl text-blueText">
+              <button className="w-full text-center text-xl lg:text-2xl text-blueText">
                 BUY
-              </p>
+              </button>
             </div>
           </div>
         </div>
-        <div className="col-start-1 col-span-11 lg:col-start-8 bg-black/20  lg:col-span-4 grid grid-cols-4 p-8 lg:px-12 ">
-          <div className="col-start-1 col-span-1  ">
+        <div className="col-start-1 col-span-11 lg:col-start-8 bg-black/20  lg:col-span-3 grid grid-cols-4 p-8 lg:px-12 ">
+          <div className="col-start-1 col-span-2  ">
             <p className="text-text ">uAzuki</p>
             <p className="text-xs text-pink">11.8%</p>
             <div className="flex  ">
-              <div className="w-5">
+              <div className="w-4">
                 <img src="/eth.png" className="object-cover" alt="" />
               </div>
               <p className="text-sm">11.8%</p>
             </div>
           </div>
           {/* stats */}
-          <div className="col-start-2 col-span-2">
+          <div className="col-start-3 col-span-3">
             <LineChart />
           </div>
-          <div className="col-start-1 col-span-1 ">
+          <div className="col-start-1 col-span-2 ">
             <p className="text-text ">uAzuki</p>
             <p className="text-xs text-pink">11.8%</p>
             <div className="flex  ">
@@ -126,7 +126,7 @@ export const NFT = () => {
             </div>
           </div>
           {/* stats */}
-          <div className="col-start-2 col-span-2">
+          <div className="col-start-3 col-span-3">
             <LineChart />
           </div>
         </div>

@@ -32,7 +32,7 @@ export const NFTCard = () => {
           </div>
         </div>
         {/* header right card */}
-        <div className=" lg:w-[50%] grid grid-cols-6  rounded-xl max-w-xs  sm:max-w-2xl mx-auto space-y-8">
+        <div className=" lg:w-[50%] grid grid-cols-6  rounded-2xl max-w-xs  sm:max-w-2xl mx-auto space-y-8">
           <div className="grid grid-cols-6 col-span-6 col-start-1 bg-secondary sm:max-h-[270px] ">
             <div className="h-[270px] sm:col-start-1 sm:col-span-3 col-start-1 col-span-6 rounded-xl">
               <img
@@ -75,8 +75,8 @@ export const NFTCard = () => {
           </div>
         </div>
       </div>
-      <div className="  mx-auto w-full max-w-xs rounded-xl sm:max-w-full  flex lg:justify-end my-6 sm:my-8 lg:my-1  box-border ">
-        <div className="py-3 sm:max-w-2xl bg-secondary lg:w-[50%] grid grid-cols-6 w-full rounded-xl mx-auto lg:mx-0">
+      <div className="  mx-auto w-full max-w-xs rounded-2xl sm:max-w-full  flex lg:justify-end my-6 sm:my-8 lg:my-1  box-border ">
+        <div className="py-6 sm:max-w-2xl bg-secondary lg:w-[50%] grid grid-cols-6 w-full rounded-xl mx-auto lg:mx-0">
           <div className="col-start-1 col-span-6 sm:col-start-1 sm:col-span-3 flex flex-col items-center space-y-4 ">
             <h1 className="text-center lg:text-left w-full py-2 lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl font-semibold">
               Trade
