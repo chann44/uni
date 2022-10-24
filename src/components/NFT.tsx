@@ -6,7 +6,7 @@ import { LineChart } from './lineChart';
 export const NFT = () => {
   return (
     <>
-      <div className="grid-cols-10 lg:h-[310px] max-w-xs mx-auto sm:max-w-2xl lg:max-w-full rounded-xl h-auto  w-full  grid ">
+      <div className="grid-cols-9 lg:h-[310px] max-w-xs mx-auto sm:max-w-2xl lg:max-w-full rounded-xl h-auto  w-full  grid ">
         <div className="relative col-start-1  lg:col-span-3 col-span-11 h-[310px] rounded-xl bg-secondary">
           <img
             className="h-full w-full  object-cover rounded-xl "
@@ -37,13 +37,13 @@ export const NFT = () => {
             </div>
           </div>
         </div>
-        <div className="bg-secondary col-start-1 col-span-11 overflow-hidden lg:col-start-4 lg:col-span-4 px-6  py-8 ">
+        <div className="bg-secondary col-start-1 col-span-11 overflow-hidden lg:col-start-4 lg:col-span-3 p-8">
           <div className="w-full  grid grid-cols-5 my-auto  ">
             {/* 1 */}
-            <div className=" col-start-1 col-span-2 lg:col-span-1">
+            <div className=" col-start-1 col-span-2 lg:col-span-2">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
-            <div className="lg:col-start-2 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
+            <div className="lg:col-start-3 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
               <input
                 type="text"
                 placeholder="0.0"
@@ -52,16 +52,16 @@ export const NFT = () => {
             </div>
 
             <div className="col-span-5 col-start-2 my-1"></div>
-            <div className="col-start-1 col-span-2 lg:col-span-1 flex justify-center  ">
-              <FaLink size={16} />
+            <div className="col-start-1 col-span-2 lg:col-span-2 flex justify-center  ">
+              <FaLink size={12} className="-rotate-45" />
             </div>
             <div className="col-start-2 col-span-3  "></div>
             <div className="col-span-5 col-start-2 my-2"></div>
             {/* 2 */}
-            <div className=" col-start-1 col-span-2 lg:col-span-1">
+            <div className=" col-start-1 col-span-2 lg:col-span-2">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
-            <div className="lg:col-start-2 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
+            <div className="lg:col-start-3 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
               <input
                 type="text"
                 placeholder="0.0"
@@ -71,17 +71,17 @@ export const NFT = () => {
             {/* 2 */}
             <div className="col-span-5 col-start-2 my-1"></div>
             <div className="col-start-1 col-span-1"></div>
-            <div className="lg:col-start-2 col-start-3 flex justify-center col-span-3 ">
+            <div className="lg:col-start-3 col-start-3 flex justify-center col-span-3 ">
               <BsChevronDown size={26} />
             </div>
 
             {/* 2 */}
 
             <div className="col-span-5 col-start-2 my-2"></div>
-            <div className=" col-start-1 col-span-2 lg:col-span-1">
+            <div className=" col-start-1 col-span-2 lg:col-span-2">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
             </div>
-            <div className="lg:col-start-2 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
+            <div className="lg:col-start-3 lg:col-span-3 col-start-3 col-span-3 flex justify-center">
               <input
                 type="text"
                 placeholder="0.0"
@@ -93,14 +93,14 @@ export const NFT = () => {
             <div className="col-span-5 col-start-2 my-2"></div>
 
             <div className="col-start-1 col-span-1 "></div>
-            <div className="col-start-3 lg:col-start-2 col-span-3 ">
+            <div className="col-start-3 lg:col-start-3 col-span-3 ">
               <button className="w-full text-center text-xl lg:text-2xl text-blueText">
                 BUY
               </button>
             </div>
           </div>
         </div>
-        <div className="col-start-1 col-span-11 lg:col-start-8 bg-black/20  lg:col-span-3 grid grid-cols-4 p-8 lg:px-12 ">
+        <div className="col-start-1 col-span-11 lg:col-start-7 bg-black/20  lg:col-span-3 grid grid-cols-4 p-8 lg:px-12 ">
           <div className="col-start-1 col-span-2  ">
             <p className="text-text ">uAzuki</p>
             <p className="text-xs text-pink">11.8%</p>
