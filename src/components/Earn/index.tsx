@@ -10,7 +10,7 @@ export const EarnCard = () => {
           Earn by Eth
         </h1>
       </div> */}
-      <div className="grid grid-cols-6 items-center bg-secondary py-6 lg:py-12 w-full max-w-lg lg:max-w-xl rounded-2xl space-y-4 sm:space-y-6">
+      <div className="grid grid-cols-6 items-center bg-secondary py-6 lg:py-12 w-full max-w-lg sm:max-w-2xl rounded-2xl space-y-4 sm:space-y-6">
         <div className="col-start-1 col-end-7 flex flex-col items-center space-y-2">
           <img src="/eu.png" className="w-24 sm:w-28 lg:w-32 " alt="" />
           <p className="sm:text-lg  lg:text-xl text-text">Earn With ETH</p>

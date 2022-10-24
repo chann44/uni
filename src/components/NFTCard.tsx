@@ -130,7 +130,7 @@ export const NFTCard = () => {
               </button>
             </div>
           </div>
-          <div className="col-start-1 col-span-6 flex flex-col items-center sm:col-start-4 sm:col-span-3 space-y-4">
+          <div className="hidden  col-start-1 col-span-6 sm:flex flex-col items-center sm:col-start-4 sm:col-span-3 space-y-4">
             <h1 className="text-center lg:text-right w-full  py-2 font-extrabold lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl">
               Earn
             </h1>

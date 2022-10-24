@@ -1,11 +1,10 @@
-import { FaArrowDown } from "react-icons/fa";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown } from 'react-icons/bs';
 
-export const ReddemComponet = () => {
+export const RedeemCard = () => {
   return (
     <div className="p-2 sm:p-6 lg:p-8 space-y-4 sm:space-y-5 lg:space-y-8 flex flex-col items-center ">
       <div className="flex flex-col items-center space-y-4">
-        <p className="text-sm   gradient-text ">uniAsset.io</p>
+        <p className="gradient-text   text-sm ">uniAsset.io</p>
         <h1 className="text-lg font-bold sm:text-xl lg:text-4xl">
           Redeem by uNFT
         </h1>

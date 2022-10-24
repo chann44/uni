@@ -36,7 +36,7 @@ const Index = () => {
   return (
     <Layout>
       <NFTCard />
-      <div className="space-y-12 block">
+      <div className="space-y-12 hidden lg:block">
         <div className="my-20 lg:my-32">
           <p className=" gradient-text text-lg mx-auto">uniAsset.io</p>
           <p className="text-center text-lg sm:text-4xl py-4 font-extrabold">
@@ -49,7 +49,9 @@ const Index = () => {
         <LoadMore />
       </div>
       <EarnCardTitle />
-      <EarnCard />
+      <div className=" max-w-xs mx-auto sm:max-w-full">
+        <EarnCard />
+      </div>
     </Layout>
   );
 };

@@ -41,7 +41,7 @@ export const NFT = () => {
           <div className="w-full grid grid-cols-7 my-auto  ">
             {/* 1 */}
             <div className=" col-start-1 col-span-2 lg:col-span-2  flex items-center">
-              <p className="text-sm lg:text-lg text-center">uAzuki</p>
+              <p className="text-sm lg:text-lg text-center">Azuki</p>
             </div>
             <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
@@ -58,7 +58,7 @@ export const NFT = () => {
             <div className="col-span-5 col-start-2 my-2"></div>
             {/* 2 */}
             <div className=" col-start-1 col-span-2 lg:col-span-2 flex  items-center">
-              <p className="text-sm lg:text-lg text-center">uAzuki</p>
+              <p className="text-sm lg:text-lg text-center">ETH</p>
             </div>
             <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
