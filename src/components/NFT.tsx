@@ -47,11 +47,11 @@ export const NFT = () => {
               <input
                 type="text"
                 placeholder="0.0"
-                className="rounded-full w-full bg-transparent border text-center"
+                className="rounded-full w-full bg-transparent border text-center p-1"
               />
             </div>
 
-            <div className="col-span-5 col-start-2 my-2"></div>
+            <div className="col-span-5 col-start-2 my-1"></div>
             <div className="col-start-1 col-span-2 lg:col-span-1 flex justify-center  ">
               <FaLink size={16} />
             </div>
@@ -65,11 +65,11 @@ export const NFT = () => {
               <input
                 type="text"
                 placeholder="0.0"
-                className=" text-center rounded-full w-full "
+                className=" text-center rounded-full w-full p-1 "
               />
             </div>
             {/* 2 */}
-            <div className="col-span-5 col-start-2 my-2"></div>
+            <div className="col-span-5 col-start-2 my-1"></div>
             <div className="col-start-1 col-span-1"></div>
             <div className="lg:col-start-2 col-start-3 flex justify-center col-span-3 ">
               <BsChevronDown size={26} />
@@ -85,7 +85,7 @@ export const NFT = () => {
               <input
                 type="text"
                 placeholder="0.0"
-                className="text-center rounded-full w-full "
+                className="text-center rounded-full w-full p-1"
               />
             </div>
             {/* 2 */}
@@ -100,8 +100,8 @@ export const NFT = () => {
             </div>
           </div>
         </div>
-        <div className="col-start-1 col-span-11 lg:col-start-8 bg-black/20  lg:col-span-4 grid grid-cols-4 p-8">
-          <div className="col-start-1 col-span-2 ">
+        <div className="col-start-1 col-span-11 lg:col-start-8 bg-black/20  lg:col-span-4 grid grid-cols-4 p-8 lg:px-12 ">
+          <div className="col-start-1 col-span-1  ">
             <p className="text-text ">uAzuki</p>
             <p className="text-xs text-pink">11.8%</p>
             <div className="flex  ">
@@ -112,10 +112,10 @@ export const NFT = () => {
             </div>
           </div>
           {/* stats */}
-          <div className="col-start-3 col-span-3">
+          <div className="col-start-2 col-span-2">
             <LineChart />
           </div>
-          <div className="col-start-1 col-span-2 ">
+          <div className="col-start-1 col-span-1 ">
             <p className="text-text ">uAzuki</p>
             <p className="text-xs text-pink">11.8%</p>
             <div className="flex  ">
@@ -126,7 +126,7 @@ export const NFT = () => {
             </div>
           </div>
           {/* stats */}
-          <div className="col-start-3 col-span-3">
+          <div className="col-start-2 col-span-2">
             <LineChart />
           </div>
         </div>
