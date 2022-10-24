@@ -50,7 +50,7 @@ html {
   width: 100%;
 }
 .fluid {
-  font-size: clamp(1rem, 2.1vw + 1rem, 4.375rem);
+  font-size: clamp(1.5rem, 2.1vw + 1rem, 3.3rem);
 }
 
 .btn-blue-shad {

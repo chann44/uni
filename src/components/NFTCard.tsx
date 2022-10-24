@@ -1,4 +1,6 @@
 // eslint-disable-next-line tailwindcss/no-custom-classname
+import { BsChevronDown } from 'react-icons/bs';
+
 import { LineChart } from './lineChart';
 
 export const NFTCard = () => {
@@ -41,12 +43,13 @@ export const NFTCard = () => {
             </div>
             <div className="col-start-1 sm:col-start-4 sm:col-span-4 col-span-6 grid grid-cols-5 items-center px-6  min-h-[250px]">
               <div className="col-start-1 col-span-2 ">
-                <p className="text-text">uAzuki</p>
-                <div className="flex text-pink ">
+                <p className="text-text ">uAzuki</p>
+                <p className="text-xs text-pink">11.8%</p>
+                <div className="flex  ">
                   <div className="w-5">
                     <img src="/eth.png" className="object-cover" alt="" />
                   </div>
-                  <p>11.8%</p>
+                  <p className="text-sm">11.8%</p>
                 </div>
               </div>
               {/* stats */}
@@ -54,14 +57,16 @@ export const NFTCard = () => {
                 <LineChart />
               </div>
               <div className="col-start-1 col-span-2 ">
-                <p className="text-text">uAzuki</p>
-                <div className="flex text-pink ">
+                <p className="text-text ">uAzuki</p>
+                <p className="text-xs text-pink">11.8%</p>
+                <div className="flex  ">
                   <div className="w-5">
                     <img src="/eth.png" className="object-cover" alt="" />
                   </div>
-                  <p>11.8%</p>
+                  <p className="text-sm">11.8%</p>
                 </div>
               </div>
+
               {/* stats */}
               <div className="col-start-3 col-span-3">
                 <LineChart />
@@ -70,19 +75,35 @@ export const NFTCard = () => {
           </div>
         </div>
       </div>
-      <div className=" mx-auto w-full max-w-xs rounded-xl sm:max-w-full  flex lg:justify-end my-6 sm:my-8 lg:my-1  box-border ">
-        <div className="sm:max-w-2xl bg-secondary lg:w-[50%] grid grid-cols-6 w-full rounded-xl mx-auto lg:mx-0">
-          <div className="col-start-1 col-span-6 sm:col-start-1 sm:col-span-3 flex flex-col items-center ">
-            <h1 className="text-center lg:text-left w-full border py-2 lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl font-semibold">
+      <div className="  mx-auto w-full max-w-xs rounded-xl sm:max-w-full  flex lg:justify-end my-6 sm:my-8 lg:my-1  box-border ">
+        <div className="py-3 sm:max-w-2xl bg-secondary lg:w-[50%] grid grid-cols-6 w-full rounded-xl mx-auto lg:mx-0">
+          <div className="col-start-1 col-span-6 sm:col-start-1 sm:col-span-3 flex flex-col items-center space-y-4 ">
+            <h1 className="text-center lg:text-left w-full py-2 lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl font-semibold">
               Trade
             </h1>
-            <div className="flex flex-col items-center  w-full border max-w-[240px]">
-              <select className="rounded-full border w-full text-center py-2 bg-transparent   px-3 ">
+            <div className="flex flex-col items-center  w-full max-w-[240px] space-y-4">
+              <select className="rounded-full  w-full text-center p-3 bg-transparent border">
                 <option className="w-full text-center " value="uAzuki">
                   uAzuki
                 </option>
               </select>
-              <div className="col-start-1 col-span-6 grid grid-cols-6 items-center">
+              <div className="col-start-1 col-span-6 grid grid-cols-6 items-center space-y-4">
+                <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
+                  <div className="w-4 ">
+                    <img className="object-cover" src="/eth.png" alt="" />
+                  </div>
+                  <input
+                    placeholder="0.0"
+                    type="text"
+                    className="w-full text-black py-1 border-none focus:outline-none focus:border-none rounded-full  placeholder:text-gray-800 "
+                  />
+                </div>
+                <div className="col-start-1 col-span-6 flex justify-center">
+                  <BsChevronDown
+                    className="w-full  font-extrabold text-center"
+                    size={25}
+                  />
+                </div>
                 <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
                   <div className="w-4 ">
                     <img className="object-cover" src="/eth.png" alt="" />
@@ -104,22 +125,22 @@ export const NFTCard = () => {
                   <p className="text-sm">10/26/2022</p>
                 </div>
               </div>
-              <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-[#B78E3E] ">
-                STAKE
+              <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText ">
+                BUY
               </button>
             </div>
           </div>
-          <div className="col-start-1 col-span-6 flex flex-col items-center sm:col-start-4 sm:col-span-3 ">
-            <h1 className="text-center lg:text-right w-full border py-2 font-extrabold lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl">
+          <div className="col-start-1 col-span-6 flex flex-col items-center sm:col-start-4 sm:col-span-3 space-y-4">
+            <h1 className="text-center lg:text-right w-full  py-2 font-extrabold lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl">
               Earn
             </h1>
-            <div className="flex flex-col items-center  w-full border max-w-[240px]">
-              <div className="grid grid-cols-6 items-center w-full">
+            <div className="flex flex-col items-center  w-full  max-w-[240px] ">
+              <div className="grid grid-cols-6 items-center w-full space-y-4">
                 <div className="col-start-1 col-end-7 flex flex-col items-center">
                   <img src="/eu.png" className="w-16  " alt="" />
                   <p className="text-sm text-text">Earn With ETH</p>
                 </div>
-                <div className="col-start-1 col-span-6 grid grid-cols-6 items-center">
+                <div className="col-start-1 col-span-6 grid grid-cols-6 items-center ">
                   <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
                     <div className="w-4 ">
                       <img className="object-cover" src="/eth.png" alt="" />
@@ -132,9 +153,11 @@ export const NFTCard = () => {
                   </div>
                 </div>
                 <div className="col-start-1 col-span-6">
-                  <div className="border text-center rounded-full  py-1 ">
-                    <p>! week</p>
-                  </div>
+                  <select className="rounded-full  w-full text-center p-3 bg-transparent border">
+                    <option className="w-full text-center " value="uAzuki">
+                      1 week
+                    </option>
+                  </select>
                 </div>
                 <div className="col-start-1  col-span-6">
                   <div className="flex justify-between">
@@ -149,13 +172,6 @@ export const NFTCard = () => {
                 <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-[#B78E3E] ">
                   STAKE
                 </button>
-
-                <a
-                  href=""
-                  className="col-start-1 col-span-6  text-center text-lg sm:text-xl underline"
-                >
-                  View my Stackings
-                </a>
               </div>
             </div>
           </div>

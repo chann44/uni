@@ -1,5 +1,8 @@
+import { useRouter } from 'next/router';
+
 import { EarnCard } from '@/components/Earn';
 import { Layout } from '@/components/Layout';
+import { NFT } from '@/components/NFT';
 import { NFTCard } from '@/components/NFTCard';
 
 const EarnCardTitle = () => {
@@ -11,10 +14,40 @@ const EarnCardTitle = () => {
   );
 };
 
+const LoadMore = () => {
+  const router = useRouter();
+  return (
+    <>
+      <div className="w-full flex justify-center ">
+        <button
+          onClick={() => {
+            router.push('/market');
+          }}
+          className="btn-blue-shad bg-[#6001D3] text-xl px-8 py-1 rounded-full "
+        >
+          load More
+        </button>
+      </div>
+    </>
+  );
+};
+
 const Index = () => {
   return (
     <Layout>
       <NFTCard />
+      <div className="space-y-12 lg:block hidden">
+        <div className="my-20 lg:my-32">
+          <p className=" gradient-text text-lg mx-auto">uniAsset.io</p>
+          <p className="text-center text-lg sm:text-4xl py-4 font-extrabold">
+            uNFT
+          </p>
+        </div>
+        <NFT />
+        <NFT />
+        <NFT />
+        <LoadMore />
+      </div>
       <EarnCardTitle />
       <EarnCard />
     </Layout>
