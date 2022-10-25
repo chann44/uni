@@ -1,19 +1,16 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { NavItem } from "../../@types/Nav";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export const NavbarItem = ({ name, link }: NavItem) => {
+export const NavbarItem = ({ name, link }: any) => {
   const router = useRouter();
-  console.log(router.pathname);
   return (
     <Link href={link}>
       <a
-        className={
-          " text-lg mx-4 border-g p-2" +
-          (router.pathname == `${link}`
-            ? " text-white opacity-80  "
-            : "  text-text ")
-        }
+        className={` border-g text-lg mx-4 p-2${
+          router.pathname === `${link}`
+            ? ' text-white opacity-80  '
+            : '  text-text '
+        }`}
       >
         {name}
       </a>

@@ -1,7 +1,7 @@
-import { NavItem } from "../../@types/Nav";
-import { NAVITEMS } from "../Navbar/Index";
-import { FooterNav } from "./fotternav";
-import { FaDiscord, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaDiscord, FaLinkedin, FaTwitter } from 'react-icons/fa';
+
+import { NAVITEMS } from '../Navbar/Index';
+import { FooterNav } from './fotternav';
 
 export const Footer = () => {
   return (
@@ -19,7 +19,7 @@ export const Footer = () => {
             </p>
           </div>
           <div>
-            {NAVITEMS?.map((navItem: NavItem) => {
+            {NAVITEMS?.map((navItem: any) => {
               return (
                 <FooterNav
                   key={navItem.name}
@@ -32,16 +32,16 @@ export const Footer = () => {
           <div className="flex space-x-3 sm:space-x-6">
             <a
               href="https://twitter.com/UniAssetio"
-              target={"_blank"}
-              rel={"morefreer noreferrer"}
+              target={'_blank'}
+              rel={'morefreer noreferrer'}
             >
               <FaTwitter size={26} />
             </a>
             <FaDiscord size={26} />
             <a
               href="https://www.linkedin.com/company/uniasset/"
-              rel={"morefreer noreferrer"}
-              target={"_blank"}
+              rel={'morefreer noreferrer'}
+              target={'_blank'}
             >
               <FaLinkedin size={26} />
             </a>

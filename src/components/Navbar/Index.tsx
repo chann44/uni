@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-import type { NavItem } from '../../@types/Nav';
 import { ConnectWallet } from './connectWallet';
 import { Logo } from './Logo';
 import { NavbarItem } from './NavItem';
 
-export const NAVITEMS: NavItem[] = [
+export const NAVITEMS = [
   {
     name: 'Home',
     link: '/',
@@ -33,7 +32,7 @@ export const NAVITEMS: NavItem[] = [
 const NavItemsComponet = () => {
   return (
     <div>
-      {NAVITEMS?.map((navItem: NavItem) => {
+      {NAVITEMS?.map((navItem: any) => {
         return (
           <NavbarItem
             key={navItem.name}
@@ -76,7 +75,7 @@ export const Navbar = () => {
       <div className="relative w-full  bg-text">
         {showMobNav && (
           <div className=" absolute left-0 flex flex-col w-full bg-primary">
-            {NAVITEMS?.map((navItem: NavItem) => {
+            {NAVITEMS?.map((navItem: any) => {
               return (
                 <NavbarItem
                   key={navItem.name}
