@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-import { EarnCard } from '@/components/Earn';
-import { Layout } from '@/components/Layout';
-import { NFT } from '@/components/NFT';
-import { NFTCard } from '@/components/NFTCard';
+import { EarnCard } from "@/components/Earn";
+import { Layout } from "@/components/Layout";
+import { NFTCard } from "@/components/Header";
+import { NFT } from "@/components/NFT/NFT";
 
+// title for earn card on the homepage
 const EarnCardTitle = () => {
   return (
     <div className="flex flex-col items-center space-y-3 my-16">
@@ -14,6 +15,7 @@ const EarnCardTitle = () => {
   );
 };
 
+// load more nfts button
 const LoadMore = () => {
   const router = useRouter();
   return (
@@ -21,7 +23,7 @@ const LoadMore = () => {
       <div className="w-full flex justify-center ">
         <button
           onClick={() => {
-            router.push('/market');
+            router.push("/market");
           }}
           className="btn-blue-shad bg-[#6001D3] text-xl px-8 py-1 rounded-full "
         >
@@ -32,6 +34,7 @@ const LoadMore = () => {
   );
 };
 
+// this is the home page
 const Index = () => {
   return (
     <Layout>
@@ -43,6 +46,7 @@ const Index = () => {
             uNFT
           </p>
         </div>
+        {/* listed NFts */}
         <NFT />
         <NFT />
         <NFT />
@@ -50,6 +54,7 @@ const Index = () => {
       </div>
       <EarnCardTitle />
       <div className=" max-w-xs mx-auto sm:max-w-full">
+        {/* Earn */}
         <EarnCard />
       </div>
     </Layout>

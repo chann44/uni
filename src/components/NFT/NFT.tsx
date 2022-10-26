@@ -1,7 +1,7 @@
-import { BsChevronDown } from 'react-icons/bs';
-import { FaArrowDown, FaLink } from 'react-icons/fa';
+import { BsChevronDown } from "react-icons/bs";
+import { FaArrowDown, FaLink } from "react-icons/fa";
 
-import { LineChart } from './lineChart';
+import { LineChart } from "../lineChart";
 
 export const NFT = () => {
   return (
@@ -13,6 +13,7 @@ export const NFT = () => {
             src="https://ipfs.io/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/916.png"
             alt=""
           />
+          {/* info on NFT image */}
           <div className="absolute p-5  top-0 w-full flex-col  flex justify-between h-full bg-gray-900 bg-opacity-60 ">
             <div className="flex justify-between items-center">
               <p>2022-10-22</p>
@@ -38,8 +39,8 @@ export const NFT = () => {
           </div>
         </div>
         <div className="bg-secondary col-start-1 col-span-11 overflow-hidden lg:col-start-4 lg:col-span-3 p-8">
+          {/*THis is Trade part on NFT Card  */}
           <div className="w-full grid grid-cols-7 my-auto  ">
-            {/* 1 */}
             <div className=" col-start-1 col-span-2 lg:col-span-2  flex items-center">
               <p className="text-sm lg:text-lg text-center">Azuki</p>
             </div>
@@ -56,7 +57,6 @@ export const NFT = () => {
             </div>
             <div className="col-start-2 col-span-3  "></div>
             <div className="col-span-5 col-start-2 my-2"></div>
-            {/* 2 */}
             <div className=" col-start-1 col-span-2 lg:col-span-2 flex  items-center">
               <p className="text-sm lg:text-lg text-center">ETH</p>
             </div>
@@ -67,13 +67,11 @@ export const NFT = () => {
                 className=" text-center rounded-full w-full p-1 "
               />
             </div>
-            {/* 2 */}
             <div className="col-span-5 col-start-2 my-1"></div>
             <div className="col-start-1 col-span-1"></div>
             <div className="lg:col-start-2 col-start-3 flex justify-center col-span-6 ">
               <BsChevronDown size={26} />
             </div>
-            {/* 2 */}
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className=" col-start-1 col-span-2 lg:col-span-2 flex items-center">
               <p className="text-sm lg:text-lg text-center">uAzuki</p>
@@ -85,7 +83,6 @@ export const NFT = () => {
                 className="text-center rounded-full w-full p-1"
               />
             </div>
-            {/* 2 */}
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className="col-start-1 col-span-1 "></div>
             <div className="col-start-3 lg:col-start-2 col-span-6 ">
@@ -95,6 +92,7 @@ export const NFT = () => {
             </div>
           </div>
         </div>
+        {/* Chart and stats */}
         <div className="col-start-1 col-span-11 lg:col-start-7 bg-black/20  lg:col-span-3 grid grid-cols-4 p-8 lg:px-12 ">
           <div className="col-start-1 col-span-2  ">
             <p className="text-text ">uAzuki</p>

@@ -1,8 +1,9 @@
-import { FaDiscord, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaDiscord, FaLinkedin, FaTwitter } from "react-icons/fa";
 
-import { NAVITEMS } from '../Navbar/Index';
-import { FooterNav } from './fotternav';
+import { NAVITEMS } from "../Navbar/Index";
+import { FooterNav } from "./fotternav";
 
+// footer starts here
 export const Footer = () => {
   return (
     <div className="p-2 lg:py-28 py-10  ">
@@ -32,16 +33,16 @@ export const Footer = () => {
           <div className="flex space-x-3 sm:space-x-6">
             <a
               href="https://twitter.com/UniAssetio"
-              target={'_blank'}
-              rel={'morefreer noreferrer'}
+              target={"_blank"}
+              rel={"morefreer noreferrer"}
             >
               <FaTwitter size={26} />
             </a>
             <FaDiscord size={26} />
             <a
               href="https://www.linkedin.com/company/uniasset/"
-              rel={'morefreer noreferrer'}
-              target={'_blank'}
+              rel={"morefreer noreferrer"}
+              target={"_blank"}
             >
               <FaLinkedin size={26} />
             </a>

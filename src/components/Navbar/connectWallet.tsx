@@ -1,7 +1,9 @@
+import { useAppContext } from "@/context/AppContextProvider";
 import { useEffect, useState } from "react";
 
 export const ConnectWallet = () => {
-  const [accountAddress, setAccountAddress] = useState("");
+  const [address, setAdrress] = useAppContext();
+
   const [isConnected, setIsConnected] = useState(false);
   const [haveMetamask, sethaveMetamask] = useState(true);
 
@@ -14,7 +16,7 @@ export const ConnectWallet = () => {
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      setAccountAddress(accounts[0]);
+      setAdrress(accounts[0]);
       setIsConnected(true);
     } catch (error) {
       setIsConnected(false);
@@ -34,7 +36,7 @@ export const ConnectWallet = () => {
     >
       {haveMetamask
         ? isConnected
-          ? accountAddress.slice(0, 8) + "..."
+          ? address.slice(0, 8) + "..."
           : "connect wallet"
         : "install metamask"}
     </button>

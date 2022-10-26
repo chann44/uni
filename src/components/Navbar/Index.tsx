@@ -1,34 +1,36 @@
-import { useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-import { ConnectWallet } from './connectWallet';
-import { Logo } from './Logo';
-import { NavbarItem } from './NavItem';
+import { ConnectWallet } from "./connectWallet";
+import { Logo } from "./Logo";
+import { NavbarItem } from "./NavItem";
 
+// links
 export const NAVITEMS = [
   {
-    name: 'Home',
-    link: '/',
+    name: "Home",
+    link: "/",
   },
   {
-    name: 'Market',
-    link: '/market',
+    name: "Market",
+    link: "/market",
   },
   {
-    name: 'Earn',
-    link: '/earn',
+    name: "Earn",
+    link: "/earn",
   },
   {
-    name: 'Redeem',
-    link: '/redeem',
+    name: "Redeem",
+    link: "/redeem",
   },
   {
-    name: 'Doc',
-    link: '/doc',
+    name: "Doc",
+    link: "/doc",
   },
 ];
 
+// componer for Each Nav item
 const NavItemsComponet = () => {
   return (
     <div>
@@ -45,6 +47,7 @@ const NavItemsComponet = () => {
   );
 };
 
+// Top Nav
 export const Navbar = () => {
   const [showMobNav, setShowMobNav] = useState(false);
   return (
@@ -73,6 +76,7 @@ export const Navbar = () => {
         </div>
       </nav>
       <div className="relative w-full  bg-text">
+        {/* mobile Nav */}
         {showMobNav && (
           <div className=" absolute left-0 flex flex-col w-full bg-primary">
             {NAVITEMS?.map((navItem: any) => {
