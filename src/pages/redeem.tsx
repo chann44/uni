@@ -1,16 +1,14 @@
-import { Layout } from '@/components/Layout';
-import { RedeemCard } from '@/components/Redeem';
+import { Layout } from "@/components/Layout";
+import { RedeemCard } from "@/components/Redeem";
 
 const Redeem = () => {
   return (
     <>
-      <div>
-        <Layout>
-          <div>
-            <RedeemCard />
-          </div>
-        </Layout>
-      </div>
+      <Layout>
+        <div>
+          <RedeemCard />
+        </div>
+      </Layout>
     </>
   );
 };

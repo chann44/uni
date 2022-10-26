@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 import {
   CategoryScale,
@@ -7,8 +7,8 @@ import {
   LineElement,
   PointElement,
   Title,
-} from 'chart.js';
-import type { AppProps } from 'next/app';
+} from "chart.js";
+import type { AppProps } from "next/app";
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 

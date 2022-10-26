@@ -19,8 +19,6 @@ import {
   uMoonBirds,
 } from "../controllers/ABI";
 
-let window: any = Window;
-
 interface Props {
   children: ReactNode;
 }

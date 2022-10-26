@@ -1,5 +1,5 @@
-import { Layout } from '@/components/Layout';
-import { NFT } from '@/components/NFT';
+import { Layout } from "@/components/Layout";
+import { NFT } from "@/components/NFT/NFT";
 
 const Market = () => {
   return (

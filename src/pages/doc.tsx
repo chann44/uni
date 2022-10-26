@@ -1,4 +1,4 @@
-import { Layout } from '@/components/Layout';
+import { Layout } from "@/components/Layout";
 
 const Doc = () => {
   return (
@@ -8,7 +8,7 @@ const Doc = () => {
           <p className="gradient-text   text-sm ">uniAsset.io</p>
         </div>
         <h1 className="text-xl sm:text-3xl text-center">
-          For details, please contact our email: ry@uniasset.io{' '}
+          For details, please contact our email: ry@uniasset.io{" "}
         </h1>
       </div>
     </Layout>

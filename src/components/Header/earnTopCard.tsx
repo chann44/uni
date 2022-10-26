@@ -23,11 +23,13 @@ export const EarnTopCard = () => {
             </div>
           </div>
           <div className="col-start-1 col-span-6">
-            <select className="rounded-full  w-full text-center p-3 bg-transparent border">
-              <option className="w-full text-center " value="uAzuki">
-                1 week
-              </option>
-            </select>
+            <div className="w-full text-center p-1 bg-transparent border rounded-full">
+              <select className="rounded-full bg-transparent text-center w-[80%]  ">
+                <option className="w-full text-center " value="uAzuki">
+                  1 week
+                </option>
+              </select>
+            </div>
           </div>
           <div className="col-start-1  col-span-6">
             <div className="flex justify-between">

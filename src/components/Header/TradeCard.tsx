@@ -7,11 +7,13 @@ export const TradeCard = () => {
         Trade
       </h1>
       <div className="flex flex-col items-center  w-full max-w-[240px] space-y-4">
-        <select className="rounded-full  w-full text-center p-3 bg-transparent border">
-          <option className="w-full text-center " value="uAzuki">
-            uAzuki
-          </option>
-        </select>
+        <div className="rounded-full  w-full text-center p-1  bg-transparent border">
+          <select className="rounded-full w-[80%]   text-center  bg-transparent ">
+            <option className="w-full text-center " value="uAzuki">
+              uAzuki
+            </option>
+          </select>
+        </div>
         <div className="col-start-1 col-span-6 grid grid-cols-6 items-center space-y-4">
           <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
             <div className="w-4 ">
