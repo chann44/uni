@@ -1,12 +1,18 @@
 import { DetailsComponet } from "@/components/Details";
 import { Layout } from "@/components/Layout";
+import { useAppContext } from "@/context/AppContextProvider";
+import { useState } from "react";
 
 const Details = () => {
+  const { currenIDDetails, setCurrentIDDetails, NFTDATA, unftData } =
+    useAppContext();
   return (
     <div
-      className="min-h-screen w-full relative bg-center border border-black"
+      className="min-h-screen w-full relative bg-center -mb-10 -mt-6 "
       style={{
-        backgroundImage: `url("https://ipfs.io/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/916.png")`,
+        backgroundImage: `url(${unftData[currenIDDetails][3]})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100%",
       }}
     >
       <div className="min-h-screen relative  z-20">

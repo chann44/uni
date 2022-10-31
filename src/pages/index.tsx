@@ -4,6 +4,10 @@ import { EarnCard } from "@/components/Earn";
 import { Layout } from "@/components/Layout";
 import { NFTCard } from "@/components/Header";
 import { NFT } from "@/components/NFT/NFT";
+import { useAppContext } from "@/context/AppContextProvider";
+import { uNFTData } from "@/controllers";
+import { useEffect } from "react";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 // title for earn card on the homepage
 const EarnCardTitle = () => {
@@ -34,6 +38,45 @@ const LoadMore = () => {
   );
 };
 
+interface RenderNum {
+  num: number;
+}
+
+export const Swap = () => {
+  return (
+    <div className="bg-black/30 flex items-center justify-center w-8 h-8 rounded-full">
+      <FaArrowUp size={10} />
+      <FaArrowDown size={10} />
+    </div>
+  );
+};
+
+export const RenderNFT = ({ num }: RenderNum) => {
+  const { NFTDATA, unftData } = useAppContext();
+
+  useEffect(() => {
+    console.log(NFTDATA);
+  }, []);
+  return (
+    <>
+      {NFTDATA &&
+        NFTDATA?.slice(0, num).map((nft: any, index: number) => {
+          return (
+            <NFT
+              id={nft.id}
+              displayName={unftData[index + 1][4]}
+              floorPrice={nft.floor_price}
+              variation={nft.variation_eth}
+              name={nft.name}
+              slug={nft.slug}
+              img={unftData[index + 1][3]}
+            />
+          );
+        })}
+    </>
+  );
+};
+
 // this is the home page
 const Index = () => {
   return (
@@ -47,9 +90,7 @@ const Index = () => {
           </p>
         </div>
         {/* listed NFts */}
-        <NFT />
-        <NFT />
-        <NFT />
+        <RenderNFT num={2} />
         <LoadMore />
       </div>
       <EarnCardTitle />

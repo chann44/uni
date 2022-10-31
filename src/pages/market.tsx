@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { NFT } from "@/components/NFT/NFT";
+import { RenderNFT } from ".";
 
 const Market = () => {
   return (
@@ -13,9 +14,7 @@ const Market = () => {
             </h1>
           </div>
           <div className="space-y-10">
-            <NFT />
-            <NFT />
-            <NFT />
+            <RenderNFT num={5} />
           </div>
         </Layout>
       </div>

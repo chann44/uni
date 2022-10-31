@@ -9,14 +9,17 @@ import {
   Title,
 } from "chart.js";
 import type { AppProps } from "next/app";
+import { AppContextProvider } from "@/context/AppContextProvider";
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="bg-primary text-white">
-      <Component {...pageProps} />;
-    </div>
+    <AppContextProvider>
+      <div className="bg-primary text-white">
+        <Component {...pageProps} />;
+      </div>
+    </AppContextProvider>
   );
 }
 

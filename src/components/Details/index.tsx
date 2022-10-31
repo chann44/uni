@@ -1,15 +1,48 @@
+import { useAppContext } from "@/context/AppContextProvider";
+import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { FaArrowDown } from "react-icons/fa";
 
 export const DetailsComponet = () => {
+  const { currenIDDetails, setCurrentIDDetails, NFTDATA, unftData } =
+    useAppContext();
+  const [currentNFTData, setCurrentNFTData] = useState<any>();
+
+  useEffect(() => {
+    NFTDATA &&
+      NFTDATA.map((nft: any) => {
+        if (nft.id == currenIDDetails) {
+          setCurrentNFTData(() => {
+            return { ...nft };
+          });
+          return;
+        }
+      });
+  }, [currenIDDetails, NFTDATA]);
+
+  useEffect(() => {
+    console.log(currenIDDetails);
+  }, [currenIDDetails]);
   return (
     <div>
+      {" "}
+      {currenIDDetails && (
+        <div className="flex flex-col items-center mb-20">
+          <div className="flex flex-col items-center space-y-3 my-8">
+            <p className="gradient-text   text-sm ">uniAsset.io</p>
+          </div>
+          <div className="w-full text-center px-5 sm:max-w-3xl space-y-6">
+            <h1 className="text-3xl">{currentNFTData?.slug}</h1>
+            <p className="text-xl">{currentNFTData?.description}</p>
+          </div>
+        </div>
+      )}
       <div className="w-full space-y-5 sm:space-y-0  sm:flex  justify-around  max-w-lg sm:max-w-full  mx-auto">
         <div className=" relative w-full sm:w-[50%] ">
           <div className="relative w-full h-[260px] sm:h-[400px]">
             <img
               className="h-full w-full  object-cover rounded-xl "
-              src="https://ipfs.io/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/916.png"
+              src={unftData[currenIDDetails][3]}
               alt=""
             />
           </div>

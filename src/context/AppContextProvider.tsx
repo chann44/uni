@@ -18,6 +18,7 @@ import {
   uBoredApe,
   uMoonBirds,
 } from "../controllers/ABI";
+import axios from "axios";
 
 interface Props {
   children: ReactNode;
@@ -37,30 +38,35 @@ export const uNFTData = {
     "0xf8CA97BE31E89D3FfB229F7AB8483bB9bB63F4fB",
     "uAzuki",
     "https://uniasset.oss-cn-hongkong.aliyuncs.com/token/azuki.pic.jpg",
+    "Azuki",
   ],
   2: [
     "beanz-official",
     "0x3F767247aF189f6dF7660e105CD4a8E5632215f6",
     "uBeanz",
     "https://uniasset.oss-cn-hongkong.aliyuncs.com/token/13091656434593_.pic.jpg",
+    "BEANZ",
   ],
   3: [
     "doodles",
     "0x6C67cD5E815F6E274DFf75A4ee180e3cF49f98eD",
     "uDoodles",
     "https://uniasset.oss-cn-hongkong.aliyuncs.com/token/13101656434599_.pic.jpg",
+    "Doodles",
   ],
   4: [
     "bored-ape-yacht-club",
     "0x61fDa6A13C255497146708A834896D70c33e41fe",
     "uBoredApe",
     "https://uniasset.oss-cn-hongkong.aliyuncs.com/token/13111656434603_.pic.jpg",
+    "BoredApe",
   ],
   5: [
     "proof-moonbirds",
     "0x91aE457665E95cADBd7630587FdF925afF065694",
     "uMoonBirds",
     "https://uniasset.oss-cn-hongkong.aliyuncs.com/token/13121656434613_.pic.jpg",
+    "moonbirds",
   ],
 };
 
@@ -82,6 +88,8 @@ export const AppContextProvider = ({ children }: Props) => {
   const [uBoredApeInstance, setuBoredApeInstance] = useState<any>();
   const [uMoonBirdsInstance, setMoonBirdsInstance] = useState<any>();
   const [unftData, setUnftData] = useState<any>(uNFTData);
+  const [NFTDATA, setNFTDATA] = useState<any>();
+  const [currenIDDetails, setCurrentIDDetails] = useState<any>(1);
 
   useEffect(() => {
     if (window.ethereum) {
@@ -110,6 +118,14 @@ export const AppContextProvider = ({ children }: Props) => {
     }
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      const res = await axios.post("https://wegroup.app/searchNFTList");
+      console.log(res);
+      setNFTDATA(res.data.NFTInfo);
+    })();
+  }, []);
+
   const shared_value = {
     LP_Addr,
     LP,
@@ -123,6 +139,9 @@ export const AppContextProvider = ({ children }: Props) => {
     uMoonBirdsInstance,
     address,
     setAdrress,
+    NFTDATA,
+    currenIDDetails,
+    setCurrentIDDetails,
   };
   return (
     <>
