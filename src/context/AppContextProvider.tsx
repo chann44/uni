@@ -145,7 +145,9 @@ export const AppContextProvider = ({ children }: Props) => {
   };
   return (
     <>
+    <div>
       <context.Provider value={shared_value}>{children}</context.Provider>
+    </div>
     </>
   );
 };
