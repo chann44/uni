@@ -91,32 +91,32 @@ export const AppContextProvider = ({ children }: Props) => {
   const [NFTDATA, setNFTDATA] = useState<any>();
   const [currenIDDetails, setCurrentIDDetails] = useState<any>(1);
 
-  useEffect(() => {
-    if (window.ethereum) {
-      console.log("MetaMask is not installed");
-    } else {
-      setProvider(new ethers.providers.Web3Provider(window.ethereum));
-      setSigner(Provider.getSigner());
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     console.log("MetaMask is not installed");
+  //   } else {
+  //     setProvider(new ethers.providers.Web3Provider(window.ethereum));
+  //     setSigner(Provider.getSigner());
 
-      const LP = new ethers.Contract(LP_Addr, LP_ABI, signer);
-      setuAzukiInstance(new ethers.Contract(uNFTData[1][1], uAzuki, signer));
-      setuBeanzInstance(new ethers.Contract(uNFTData[2][1], uBeanz, signer));
-      setuDoodlesInstance(
-        new ethers.Contract(uNFTData[3][1], uDoodles, signer)
-      );
-      setuBoredApeInstance(
-        new ethers.Contract(uNFTData[4][1], uBoredApe, signer)
-      );
-      setMoonBirdsInstance(
-        new ethers.Contract(uNFTData[5][1], uMoonBirds, signer)
-      );
-      setUnftData(unftData[1].push(uAzukiInstance));
-      setUnftData(unftData[2].push(uBeanzInstance));
-      setUnftData(uNFTData[3].push(uDoodlesInstance));
-      setUnftData(uNFTData[4].push(uBoredApeInstance));
-      setUnftData(uNFTData[5].push(uMoonBirdsInstance));
-    }
-  }, []);
+  //     const LP = new ethers.Contract(LP_Addr, LP_ABI, signer);
+  //     setuAzukiInstance(new ethers.Contract(uNFTData[1][1], uAzuki, signer));
+  //     setuBeanzInstance(new ethers.Contract(uNFTData[2][1], uBeanz, signer));
+  //     setuDoodlesInstance(
+  //       new ethers.Contract(uNFTData[3][1], uDoodles, signer)
+  //     );
+  //     setuBoredApeInstance(
+  //       new ethers.Contract(uNFTData[4][1], uBoredApe, signer)
+  //     );
+  //     setMoonBirdsInstance(
+  //       new ethers.Contract(uNFTData[5][1], uMoonBirds, signer)
+  //     );
+  //     setUnftData(unftData[1].push(uAzukiInstance));
+  //     setUnftData(unftData[2].push(uBeanzInstance));
+  //     setUnftData(uNFTData[3].push(uDoodlesInstance));
+  //     setUnftData(uNFTData[4].push(uBoredApeInstance));
+  //     setUnftData(uNFTData[5].push(uMoonBirdsInstance));
+  //   }
+  // }, []);
 
   useEffect(() => {
     (async () => {
