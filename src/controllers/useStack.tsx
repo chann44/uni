@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { getDateFromUnixTimestamp } from "./uttils";
 
 export async function stake(_value, _plan) {
-  const { LP } = useAppContext();
+  const LP: any = {}
   if (ethers.utils.parseEther(_value).toNumber() == 0) {
     return;
   }
@@ -16,7 +16,8 @@ export async function stake(_value, _plan) {
 }
 
 export async function unstake(_index) {
-  const { LP, address } = useAppContext();
+  const { address } = useAppContext();
+  const LP: any = ""
   let txn = await LP.unstake(_index);
   let result = await txn.wait();
   if (result.events[0].event == "userUnstakeTxn") {
@@ -25,7 +26,8 @@ export async function unstake(_index) {
 }
 
 export async function getStakeInfo() {
-  const { LP, address } = useAppContext();
+  const { address } = useAppContext();
+  const LP: any = ""
   let result = [];
   let account = await LP.accounts(address);
   let upIndex = parseInt(account._hex, 16);

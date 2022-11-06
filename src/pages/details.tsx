@@ -4,13 +4,13 @@ import { useAppContext } from "@/context/AppContextProvider";
 import { useState } from "react";
 
 const Details = () => {
-  const { currenIDDetails, setCurrentIDDetails, NFTDATA, unftData } =
+  const { currentIDDetails, setCurrentIDDetails, unftData } =
     useAppContext();
   return (
     <div
       className="min-h-screen w-full relative bg-center -mb-10 -mt-6 "
       style={{
-        backgroundImage: `url(${unftData[currenIDDetails][3]})`,
+        backgroundImage: `url(${unftData[currentIDDetails][3]})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100%",
       }}

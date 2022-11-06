@@ -4,29 +4,26 @@ import { BsChevronDown } from "react-icons/bs";
 import { FaArrowDown } from "react-icons/fa";
 
 export const DetailsComponet = () => {
-  const { currenIDDetails, setCurrentIDDetails, NFTDATA, unftData } =
+  const { currentIDDetails, setCurrentIDDetails, unftData } =
     useAppContext();
   const [currentNFTData, setCurrentNFTData] = useState<any>();
 
   useEffect(() => {
-    NFTDATA &&
-      NFTDATA.map((nft: any) => {
-        if (nft.id == currenIDDetails) {
+    unftData &&
+      unftData.map((nft: any) => {
+        if (nft.id == currentIDDetails) {
           setCurrentNFTData(() => {
             return { ...nft };
           });
           return;
         }
       });
-  }, [currenIDDetails, NFTDATA]);
+  }, [currentIDDetails, unftData]);
 
-  useEffect(() => {
-    console.log(currenIDDetails);
-  }, [currenIDDetails]);
   return (
     <div>
       {" "}
-      {currenIDDetails && (
+      {currentIDDetails && (
         <div className="flex flex-col items-center mb-20">
           <div className="flex flex-col items-center space-y-3 my-8">
             <p className="gradient-text   text-sm ">uniAsset.io</p>
@@ -42,7 +39,6 @@ export const DetailsComponet = () => {
           <div className="relative w-full h-[260px] sm:h-[400px]">
             <img
               className="h-full w-full  object-cover rounded-xl "
-              src={unftData[currenIDDetails][3]}
               alt=""
             />
           </div>

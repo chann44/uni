@@ -3,7 +3,7 @@ import { addTokenToWallet, sendRawTxn } from "./uttils";
 import qs from "qs"
 
 export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
-  console.log(_nftId);
+  console.log("slug is here ", slug)
   const res = await axios("https://wegroup.app/calBuyUNFTPrice", {
     method: "POST",
     headers: {
@@ -15,6 +15,7 @@ export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
       slug: slug,
     }),
   });
+  console.log(res)
   return {
     totalPrice: res.data.UNftPriceInfo.price_needed,
     transferFess: res.data.UNftPriceInfo.transferFee,

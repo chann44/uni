@@ -1,4 +1,4 @@
-import { useAppContext } from "@/context/AppContextProvider";
+import { uNFTData, useAppContext } from "@/context/AppContextProvider";
 import { Swap } from "@/pages";
 import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -32,13 +32,9 @@ export const NFT = ({
   const router = useRouter();
   const { currentIDDetails, setCurrentIDDetails } = useAppContext();
   const [amt, setAmt] = useState<number>(1)
-  const [actualAmt, setActualAmt] = useState<number>(0)
-  const [uactualAmt, setuActualAmt] = useState<number>(0)
-  const [ethVal, setEthVal] = useState<number>(0)
-
-
-
-
+  const [actualAmt, setActualAmt] = useState<string>("0")
+  const [uactualAmt, setuActualAmt] = useState<string>("0")
+  const [ethVal, setEthVal] = useState<string>("0")
 
   return (
     <>
@@ -107,10 +103,10 @@ export const NFT = ({
                 type="text"
                 value={ethVal}
                 onChange={async (e) => {
-                  setEthVal(Number(e.target.value))
+                  setEthVal(e.target.value)
                   const data = await getAmtFromEth(amt, id, slug, Number(e.target.value))
-                  setActualAmt(data)
-                  setuActualAmt(Number(data.toFixed(5)))
+                  setActualAmt(data.toString())
+                  setuActualAmt(data.toFixed(5))
                 }}
                 placeholder="0.0"
                 className=" text-center rounded-full w-full p-1 text-black"
@@ -131,9 +127,9 @@ export const NFT = ({
                 placeholder="0.0"
                 className="text-center rounded-full w-full p-1 text-black"
                 onChange={async (e) => {
-                  setuActualAmt(Number(e.target.value))
+                  setuActualAmt(e.target.value)
                   const data = await quoteBuy(Number(e.target.value), id, slug)
-                  setEthVal(Number(data.totalPrice.toFixed(4)))
+                  setEthVal(data.totalPrice.toFixed(4))
                 }}
                 value={uactualAmt}
               />
@@ -148,21 +144,28 @@ export const NFT = ({
           </div>
         </div>
         {/* Chart and stats */}
+
         <div className="col-start-1 col-span-11 lg:col-start-7 bg-black/20  lg:col-span-3 grid grid-cols-4 p-8 lg:px-12 ">
-          <Stats
-            displayName={displayName}
-            variation={variation}
-            floorPrice={floorPrice}
-            history_data_table={history_data_table}
-            slug={slug}
-          />
-          <Stats
-            displayName={"u" + displayName}
-            variation={variation}
-            floorPrice={floorPrice}
-            history_data_table={history_data_table}
-            slug={slug}
-          />
+
+          {
+            uNFTData && <>
+              <Stats
+                displayName={displayName}
+                variation={variation}
+                floorPrice={floorPrice}
+                history_data_table={history_data_table}
+                slug={slug}
+              />
+              <Stats
+                displayName={"u" + displayName}
+                variation={variation}
+                floorPrice={floorPrice}
+                history_data_table={history_data_table}
+                slug={slug}
+              />
+            </>
+          }
+
         </div>
       </div>
     </>

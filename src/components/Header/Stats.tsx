@@ -16,29 +16,44 @@ export const Stats = ({ floorPrice, variation, displayName, slug, history_data_t
   useEffect(() => {
     (
       async () => {
+        console.log(slug)
         const res = await getData(7, history_data_table, slug)
-        setHistoryData(res.NFTHistoryInfo)
+        console.log(res)
+        setHistoryData((prev: any) => {
+          return res.NFTHistoryInfo
+        }
+        )
       }
     )()
-  }, [])
+  }, [history_data_table])
+
+
+  useEffect(() => {
+    console.log(historydata)
+  }, [historydata])
+
 
   return (
     <>
       {/* chart and floor price stats */}
-      <div className="col-start-1 col-span-2 ">
-        <p className="text-text text-xs mb-3">{displayName} floor price</p>
-        <p className="text-xs text-pink ">{variation} %</p>
-        <div className="flex space-y-2  ">
-          <div className="w-5 mr-2">
-            <img src="/eth.png" className="object-cover" alt="" />
+      {
+        historydata && <>
+          <div className="col-start-1 col-span-2 ">
+            <p className="text-text text-xs mb-3">{displayName} floor price</p>
+            <p className="text-xs text-pink ">{variation} %</p>
+            <div className="flex space-y-2  ">
+              <div className="w-5 mr-2">
+                <img src="/eth.png" className="object-cover" alt="" />
+              </div>
+              <p className="text-xs">{floorPrice} ETH</p>
+            </div>
           </div>
-          <p className="text-xs">{floorPrice} ETH</p>
-        </div>
-      </div>
-      {/* stats */}
-      <div className="col-start-3 col-span-3">
-        {historydata && <LineChart Data={historydata} />}
-      </div>
+          {/* stats */}
+          <div className="col-start-3 col-span-3">
+            <LineChart Data={historydata} />
+          </div>
+        </>
+      }
     </>
   );
 };

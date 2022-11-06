@@ -72,6 +72,8 @@ interface Props {
 
 export const LineChart = ({ Data }: Props) => {
   const [userData, setUserData] = useState<any>();
+
+
   useEffect(() => {
     setUserData(() => {
       return {
@@ -90,7 +92,7 @@ export const LineChart = ({ Data }: Props) => {
   return (
 
     <>
-      {userData &&
+      {userData ?
         <Line
           options={{
             plugins: {
@@ -117,8 +119,8 @@ export const LineChart = ({ Data }: Props) => {
             height: '100%',
             maxWidth: '100%',
           }}
-          data={userData}
-        />
+          data={userData && userData}
+        /> : "loading"
       }
     </>
   );
