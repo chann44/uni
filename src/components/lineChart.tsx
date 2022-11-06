@@ -1,3 +1,4 @@
+import { HIstoryData } from '@/controllers/uttils';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
@@ -64,13 +65,17 @@ export const UserData = [
   },
 ];
 
-export const LineChart = () => {
-  // eslint-disable-next-line unused-imports/no-unused-vars
+interface Props {
+  Data: HIstoryData[]
+}
+
+
+export const LineChart = ({ Data }: Props) => {
   const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
+    labels: Data.map((data) => data.time),
     datasets: [
       {
-        data: UserData.map((data) => data.userGain),
+        data: Data.map((data) => data.floor_price),
         borderColor: '#FD346E',
         borderWidth: 1,
       },

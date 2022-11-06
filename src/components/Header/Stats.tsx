@@ -1,12 +1,27 @@
+import { getData } from "@/controllers/useNFTHistory";
+import { HIstoryData } from "@/controllers/uttils";
+import { useEffect, useState } from "react";
 import { LineChart } from "../lineChart";
 
 interface INFTInfo {
   floorPrice: number;
   variation: number;
   displayName: string;
+  slug: string
+  history_data_table: string
 }
 
-export const Stats = ({ floorPrice, variation, displayName }: INFTInfo) => {
+export const Stats = ({ floorPrice, variation, displayName, slug, history_data_table }: INFTInfo) => {
+  const [historydata, setHistoryData] = useState<HIstoryData[]>()
+  useEffect(() => {
+    (
+      async () => {
+        const res = await getData(7, history_data_table, slug)
+        setHistoryData(res.NFTHistoryInfo)
+      }
+    )()
+  }, [])
+
   return (
     <>
       {/* chart and floor price stats */}
@@ -22,7 +37,7 @@ export const Stats = ({ floorPrice, variation, displayName }: INFTInfo) => {
       </div>
       {/* stats */}
       <div className="col-start-3 col-span-3">
-        <LineChart />
+        {historydata && <LineChart Data={historydata} />}
       </div>
     </>
   );

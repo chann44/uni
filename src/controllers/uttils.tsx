@@ -6,7 +6,7 @@ export const toSqlDatetime = (inputDate) => {
   const dateWithOffest = new Date(
     date.getTime() - date.getTimezoneOffset() * 60000
   );
-  return dateWithOffest.toISOString().slice(0, 19).replace("T", " ");
+  return dateWithOffest.toISOString().slice(0, 19).replace("T", "+");
 };
 
 export async function approve(productId, _addr, _amt, unftData) {
@@ -83,4 +83,15 @@ export async function switchToMainnet() {
     params: [{ chainId: "0x1" }],
   });
   return;
+}
+
+
+
+export interface HIstoryData {
+  id: number,
+  nftid: number,
+  time: string,
+  floor_price: number,
+  volumn: number
+  sales: number
 }

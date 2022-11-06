@@ -1,24 +1,14 @@
 import { useAppContext } from "@/context/AppContextProvider";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LineChart } from "../lineChart";
 import { Stats } from "./Stats";
+import { getData } from "../../controllers/useNFTHistory"
+import { HIstoryData } from "@/controllers/uttils";
 
-interface INFTInfo {
-  name: string;
-  slug: string;
-  img: string;
-  floorPrice: number;
-  variation: number;
-  displayName: string;
-}
 
 export const TopNFTCard = () => {
   const { unftData } = useAppContext();
 
-
-  useEffect(() => {
-    console.log("hey wdup", unftData[0])
-  }, [])
   return (
     <>
       <div className="grid grid-cols-6 col-span-6 col-start-1 bg-secondary sm:max-h-[270px] ">
@@ -34,11 +24,15 @@ export const TopNFTCard = () => {
             displayName={unftData[0]?.display_name}
             variation={unftData && unftData[0].variation_eth}
             floorPrice={unftData && unftData[0].floor_price}
+            slug={unftData[0].slug}
+            history_data_table={unftData[0].history_data_table}
           />
           <Stats
             displayName={"u" + unftData[0].display_name}
             variation={unftData && unftData[0].variation_eth}
             floorPrice={unftData && unftData[0].floor_price}
+            history_data_table={unftData[0].history_data_table}
+            slug={unftData[0].slug}
           />
         </div>
       </div>

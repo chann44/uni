@@ -4,7 +4,6 @@ import { Layout } from "@/components/Layout";
 import { NFTCard } from "@/components/Header";
 import { NFT } from "@/components/NFT/NFT";
 import { useAppContext, IuNFTData } from "@/context/AppContextProvider";
-import { uNFTData } from "@/controllers";
 import { useEffect } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
@@ -66,6 +65,7 @@ export const RenderNFT = ({ num }: RenderNum) => {
               name={nft.name}
               slug={nft.slug}
               img={nft.img}
+              history_data_table={nft.history_data_table}
             />
           );
         })}

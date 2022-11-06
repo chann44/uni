@@ -15,6 +15,7 @@ interface INFTInfo {
   floorPrice: number;
   variation: number;
   displayName: string;
+  history_data_table: string
 }
 
 export const NFT = ({
@@ -25,9 +26,10 @@ export const NFT = ({
   floorPrice,
   variation,
   displayName,
+  history_data_table
 }: INFTInfo) => {
   const router = useRouter();
-  const { currenIDDetails, setCurrentIDDetails } = useAppContext();
+  const { currentIDDetails, setCurrentIDDetails } = useAppContext();
   console.log(displayName);
   return (
     <>
@@ -128,11 +130,15 @@ export const NFT = ({
             displayName={displayName}
             variation={variation}
             floorPrice={floorPrice}
+            history_data_table={history_data_table}
+            slug={slug}
           />
           <Stats
             displayName={"u" + displayName}
             variation={variation}
             floorPrice={floorPrice}
+            history_data_table={history_data_table}
+            slug={slug}
           />
         </div>
       </div>
