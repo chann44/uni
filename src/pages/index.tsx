@@ -1,10 +1,9 @@
 import { useRouter } from "next/router";
-
 import { EarnCard } from "@/components/Earn";
 import { Layout } from "@/components/Layout";
 import { NFTCard } from "@/components/Header";
 import { NFT } from "@/components/NFT/NFT";
-import { useAppContext } from "@/context/AppContextProvider";
+import { useAppContext, IuNFTData } from "@/context/AppContextProvider";
 import { uNFTData } from "@/controllers";
 import { useEffect } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
@@ -52,24 +51,21 @@ export const Swap = () => {
 };
 
 export const RenderNFT = ({ num }: RenderNum) => {
-  const { NFTDATA, unftData } = useAppContext();
+  const { unftData } = useAppContext();
 
-  useEffect(() => {
-    console.log(NFTDATA);
-  }, []);
   return (
     <>
-      {NFTDATA &&
-        NFTDATA?.slice(0, num).map((nft: any, index: number) => {
+      {unftData &&
+        unftData?.slice(0, num).map((nft: IuNFTData, index: number) => {
           return (
             <NFT
               id={nft.id}
-              displayName={unftData[index + 1][4]}
+              displayName={nft.display_name}
               floorPrice={nft.floor_price}
               variation={nft.variation_eth}
               name={nft.name}
               slug={nft.slug}
-              img={unftData[index + 1][3]}
+              img={nft.img}
             />
           );
         })}
