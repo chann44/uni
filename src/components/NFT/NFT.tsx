@@ -1,11 +1,12 @@
 import { useAppContext } from "@/context/AppContextProvider";
 import { Swap } from "@/pages";
 import { Router, useRouter } from "next/router";
-import { BsChevronDown } from "react-icons/bs";
+import { useEffect, useState } from "react";
 import { FaArrowDown, FaLink } from "react-icons/fa";
 import { Stats } from "../Header/Stats";
+import { quoteBuy } from "../../controllers/useBuy"
+import { getAmtFromEth } from "@/controllers/uttils";
 
-import { LineChart } from "../lineChart";
 
 interface INFTInfo {
   id: number;
@@ -30,7 +31,15 @@ export const NFT = ({
 }: INFTInfo) => {
   const router = useRouter();
   const { currentIDDetails, setCurrentIDDetails } = useAppContext();
-  console.log(displayName);
+  const [amt, setAmt] = useState<number>(1)
+  const [actualAmt, setActualAmt] = useState<number>(0)
+  const [uactualAmt, setuActualAmt] = useState<number>(0)
+  const [ethVal, setEthVal] = useState<number>(0)
+
+
+
+
+
   return (
     <>
       <div className="grid-cols-9 lg:h-[310px] max-w-xs mx-auto sm:max-w-2xl lg:max-w-full rounded-xl h-auto  w-full  grid ">
@@ -79,8 +88,9 @@ export const NFT = ({
             <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
                 type="text"
+                value={uactualAmt}
                 placeholder="0.0"
-                className="rounded-full w-full bg-transparent border text-center p-1"
+                className="rounded-full w-full bg-transparent border text-center p-1 "
               />
             </div>
             <div className="col-span-5 col-start-2 my-1"></div>
@@ -90,13 +100,20 @@ export const NFT = ({
             <div className="col-start-2 col-span-3  "></div>
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className=" col-start-1 col-span-2 lg:col-span-2 flex  items-center justify-center">
-              <p className="text-sm  text-center">ETH</p>
+              <p className="text-sm  text-center" >ETH</p>
             </div>
             <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
                 type="text"
+                value={ethVal}
+                onChange={async (e) => {
+                  setEthVal(Number(e.target.value))
+                  const data = await getAmtFromEth(amt, id, slug, Number(e.target.value))
+                  setActualAmt(data)
+                  setuActualAmt(Number(data.toFixed(5)))
+                }}
                 placeholder="0.0"
-                className=" text-center rounded-full w-full p-1 "
+                className=" text-center rounded-full w-full p-1 text-black"
               />
             </div>
             <div className="col-span-5 col-start-2 my-1"></div>
@@ -112,7 +129,13 @@ export const NFT = ({
               <input
                 type="text"
                 placeholder="0.0"
-                className="text-center rounded-full w-full p-1"
+                className="text-center rounded-full w-full p-1 text-black"
+                onChange={async (e) => {
+                  setuActualAmt(Number(e.target.value))
+                  const data = await quoteBuy(Number(e.target.value), id, slug)
+                  setEthVal(Number(data.totalPrice.toFixed(4)))
+                }}
+                value={uactualAmt}
               />
             </div>
             <div className="col-span-5 col-start-2 my-2"></div>

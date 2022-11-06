@@ -1,5 +1,5 @@
 import { HIstoryData } from '@/controllers/uttils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
 export const UserData = [
@@ -71,45 +71,55 @@ interface Props {
 
 
 export const LineChart = ({ Data }: Props) => {
-  const [userData, setUserData] = useState({
-    labels: Data.map((data) => data.time),
-    datasets: [
-      {
-        data: Data.map((data) => data.floor_price),
-        borderColor: '#FD346E',
-        borderWidth: 1,
-      },
-    ],
-  });
+  const [userData, setUserData] = useState<any>();
+  useEffect(() => {
+    setUserData(() => {
+      return {
+        labels: Data.map((data) => data.time),
+        datasets: [
+          {
+            data: Data.map((data) => data.floor_price),
+            borderColor: '#FD346E',
+            borderWidth: 1,
+          },
+        ],
+      }
+    })
+  }, [Data])
 
   return (
-    <Line
-      options={{
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        elements: {
-          point: {
-            radius: 0,
-          },
-        },
-        scales: {
-          y: {
-            display: false,
-          },
-          x: {
-            display: false,
-          },
-        },
-      }}
-      aria-label=""
-      style={{
-        height: '100%',
-        maxWidth: '100%',
-      }}
-      data={userData}
-    />
+
+    <>
+      {userData &&
+        <Line
+          options={{
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+            elements: {
+              point: {
+                radius: 0,
+              },
+            },
+            scales: {
+              y: {
+                display: false,
+              },
+              x: {
+                display: false,
+              },
+            },
+          }}
+          aria-label=""
+          style={{
+            height: '100%',
+            maxWidth: '100%',
+          }}
+          data={userData}
+        />
+      }
+    </>
   );
 };
