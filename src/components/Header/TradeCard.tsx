@@ -1,4 +1,4 @@
-import { IuNFTData, uNFTData, useAppContext } from "@/context/AppContextProvider";
+import { IuNFTData, useAppContext } from "@/context/AppContextProvider";
 import { quoteBuy } from "@/controllers/useBuy";
 import { quoteSell } from "@/controllers/useSell";
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
@@ -21,11 +21,11 @@ export const TradeCard = () => {
   const [ethVal, setEthVal] = useState<string>("")
   const [data, setData] = useState<feesData>()
   const [sell, setSell] = useState<boolean>(false)
-  const { address, setPopup, popup } = useAppContext()
+  const { address, setPopup, popup, unftData } = useAppContext()
 
 
   useEffect(() => {
-    uNFTData.map((nft) => {
+    unftData.map((nft) => {
       if (nft.id == nftId) {
         console.log(nft)
         setuNFTdataToBy((prev: any) => {
@@ -34,21 +34,20 @@ export const TradeCard = () => {
         return
       }
     })
-  }, [nftId])
+  }, [nftId, unftData])
 
 
 
   useEffect(() => {
     (async () => {
       if (unftDataToby) {
-        console.log(unftDataToby)
         const data = await quoteBuy(1, unftDataToby.id, unftDataToby.slug)
         setData((prev: any) => {
-          return { ...prev, ...data }
+          return { ...data }
         })
       }
     })()
-  }, [unftDataToby, nftId, uNFTData])
+  }, [unftDataToby, nftId, unftData])
 
   return (
     <div className="col-start-1 col-span-6 sm:col-start-1 sm:col-span-3 flex flex-col items-center space-y-4 ">
@@ -66,8 +65,8 @@ export const TradeCard = () => {
             }}
             className="rounded-full w-[80%]   text-center  bg-transparent "
           >
-            {uNFTData &&
-              uNFTData?.map((nft: IuNFTData, index: number) => {
+            {unftData &&
+              unftData?.map((nft: IuNFTData, index: number) => {
                 return (
                   <option
                     selected={index == 0 && true}

@@ -61,7 +61,7 @@ export const stakingPeriods = {
 };
 
 
-export const uNFTData: IuNFTData[] = [
+const uNFTData: IuNFTData[] = [
   {
     id: 1,
     name: "Azuki",
