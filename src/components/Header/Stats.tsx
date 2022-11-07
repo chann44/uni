@@ -2,6 +2,7 @@ import { getData } from "@/controllers/useNFTHistory";
 import { HIstoryData } from "@/controllers/uttils";
 import { useEffect, useState } from "react";
 import { LineChart } from "../lineChart";
+import { Loading } from "../Loading";
 
 interface INFTInfo {
   floorPrice: number;

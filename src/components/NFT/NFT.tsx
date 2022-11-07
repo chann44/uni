@@ -1,4 +1,4 @@
-import { uNFTData, useAppContext } from "@/context/AppContextProvider";
+import { useAppContext } from "@/context/AppContextProvider";
 import { Swap } from "@/pages";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import { Stats } from "../Header/Stats";
 import { quoteBuy } from "../../controllers/useBuy"
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
 import { quoteSell } from "@/controllers/useSell";
+import { Loading } from "../Loading";
 
 
 interface INFTInfo {
@@ -31,7 +32,7 @@ export const NFT = ({
   history_data_table
 }: INFTInfo) => {
   const router = useRouter();
-  const { currentIDDetails, setCurrentIDDetails } = useAppContext();
+  const { currentIDDetails, setCurrentIDDetails, unftData } = useAppContext();
   const [amt, setAmt] = useState<number>(1)
   const [actualAmt, setActualAmt] = useState<string>("0")
   const [uactualAmt, setuActualAmt] = useState<string>("0")
@@ -170,7 +171,7 @@ export const NFT = ({
         <div className="col-start-1 col-span-11 lg:col-start-7 bg-black/20  lg:col-span-3 grid grid-cols-4 p-8 lg:px-12 ">
 
           {
-            uNFTData && <>
+            unftData && <>
               <Stats
                 displayName={displayName}
                 variation={variation}
