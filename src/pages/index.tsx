@@ -7,6 +7,7 @@ import { useAppContext, IuNFTData } from "@/context/AppContextProvider";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { MetaMaskPopup } from "@/components/MetamaskPopup";
+import { StackingInfo } from "@/components/Earn/Stackinginfo";
 
 // title for earn card on the homepage
 const EarnCardTitle = () => {
@@ -89,12 +90,11 @@ export const RenderNFT = ({ num }: RenderNum) => {
 
 // this is the home page
 const Index = () => {
-  const { popup } = useAppContext()
-
-
+  const { popup, stacking } = useAppContext()
   useEffect(() => {
     console.log(popup)
   }, [popup])
+
   return (
     <Layout>
       <NFTCard />
@@ -118,6 +118,10 @@ const Index = () => {
         popup ?
           <MetaMaskPopup />
           : null
+      }
+      {
+        stacking &&
+        <StackingInfo />
       }
     </Layout>
   );

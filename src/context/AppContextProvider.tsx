@@ -19,7 +19,6 @@ import {
   uMoonBirds,
 } from "../controllers/ABI";
 import axios from "axios";
-import { id } from "ethers/lib/utils";
 
 interface Props {
   children: ReactNode;
@@ -85,7 +84,6 @@ const uNFTData: IuNFTData[] = [
     url: "",
     variation_eth: 0,
     "24h_volume": 0
-
   },
   {
     id: 2,
@@ -110,8 +108,6 @@ const uNFTData: IuNFTData[] = [
     url: "",
     variation_eth: 0,
     "24h_volume": 0
-
-
   },
   {
     id: 3,
@@ -136,7 +132,6 @@ const uNFTData: IuNFTData[] = [
     url: "",
     variation_eth: 0,
     "24h_volume": 0
-
   },
   {
 
@@ -186,7 +181,6 @@ const uNFTData: IuNFTData[] = [
     url: "",
     variation_eth: 0,
     "24h_volume": 0
-
   }
 ]
 
@@ -206,6 +200,8 @@ interface IAppContext {
   setCurrentIDDetails: any
   popup: boolean;
   setPopup: Dispatch<SetStateAction<boolean>>
+  stacking: boolean;
+  setStacking: Dispatch<SetStateAction<boolean>>
 }
 
 const context = createContext({} as IAppContext);
@@ -223,7 +219,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [NFTDATA, setNFTDATA] = useState<any>();
   const [currentIDDetails, setCurrentIDDetails] = useState<any>(1);
   const [popup, setPopup] = useState<boolean>(false)
-
+  const [stacking, setStacking] = useState<boolean>(false)
   // useEffect(() => {
   //   if (window.ethereum) {
   //     console.log("MetaMask is not installed");
@@ -283,6 +279,8 @@ export const AppContextProvider = ({ children }: Props) => {
     setCurrentIDDetails,
     popup,
     setPopup,
+    stacking,
+    setStacking
   };
   return (
     <>

@@ -6,7 +6,6 @@ import { Swap } from "@/pages";
 import { useEffect, useState } from "react";
 import { AiOutlineInfo } from "react-icons/ai";
 
-
 interface feesData {
   totalPrice: number,
   transferFess: number,
