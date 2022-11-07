@@ -201,7 +201,9 @@ interface IAppContext {
   popup: boolean;
   setPopup: Dispatch<SetStateAction<boolean>>
   stacking: boolean;
-  setStacking: Dispatch<SetStateAction<boolean>>
+  setStacking: Dispatch<SetStateAction<boolean>>,
+  setCurrentNFTData: Dispatch<SetStateAction<any>>
+  currentNFTData: any
 }
 
 const context = createContext({} as IAppContext);
@@ -220,6 +222,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [currentIDDetails, setCurrentIDDetails] = useState<any>(1);
   const [popup, setPopup] = useState<boolean>(false)
   const [stacking, setStacking] = useState<boolean>(false)
+  const [currentNFTData, setCurrentNFTData] = useState<any>();
   // useEffect(() => {
   //   if (window.ethereum) {
   //     console.log("MetaMask is not installed");
@@ -280,7 +283,9 @@ export const AppContextProvider = ({ children }: Props) => {
     popup,
     setPopup,
     stacking,
-    setStacking
+    setStacking,
+    currentNFTData,
+    setCurrentNFTData
   };
   return (
     <>

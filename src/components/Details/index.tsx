@@ -4,11 +4,11 @@ import { BsChevronDown } from "react-icons/bs";
 import { FaArrowDown } from "react-icons/fa";
 
 export const DetailsComponet = () => {
-  const { currentIDDetails, setCurrentIDDetails, unftData } =
+  const { currentIDDetails, currentNFTData, setCurrentNFTData, setCurrentIDDetails, unftData } =
     useAppContext();
-  const [currentNFTData, setCurrentNFTData] = useState<any>();
 
   useEffect(() => {
+    console.log(currentIDDetails)
     unftData &&
       unftData.map((nft: any) => {
         if (nft.id == currentIDDetails) {
@@ -39,7 +39,8 @@ export const DetailsComponet = () => {
           <div className="relative w-full h-[260px] sm:h-[400px]">
             <img
               className="h-full w-full  object-cover rounded-xl "
-              alt=""
+              src={currentNFTData?.img}
+              alt="nft img"
             />
           </div>
           <div className=" w-full flex justify-between p-6 bg-secondary rounded-b-xl">
