@@ -23,7 +23,6 @@ export const TradeCard = () => {
   const [sell, setSell] = useState<boolean>(false)
   const { address, setPopup, popup, unftData } = useAppContext()
 
-
   useEffect(() => {
     unftData.map((nft) => {
       if (nft.id == nftId) {
@@ -35,8 +34,6 @@ export const TradeCard = () => {
       }
     })
   }, [nftId, unftData])
-
-
 
   useEffect(() => {
     (async () => {
@@ -130,7 +127,6 @@ export const TradeCard = () => {
               }}
               value={sell ? ethVal : uactualAmt}
             />
-
           </div>
         </div>
         <div className="w-full">
@@ -147,7 +143,6 @@ export const TradeCard = () => {
           if (address === "") {
             console.log(address)
             console.log("i am running")
-            // setPopup(true)
           }
         }}>
           {sell ? "TRADE" : "BUY"}
