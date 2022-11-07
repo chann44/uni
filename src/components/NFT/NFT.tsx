@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { FaArrowDown, FaLink } from "react-icons/fa";
 import { Stats } from "../Header/Stats";
 import { quoteBuy } from "../../controllers/useBuy"
-import { getAmtFromEth } from "@/controllers/uttils";
+import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
+import { quoteSell } from "@/controllers/useSell";
 
 
 interface INFTInfo {
@@ -35,6 +36,7 @@ export const NFT = ({
   const [actualAmt, setActualAmt] = useState<string>("0")
   const [uactualAmt, setuActualAmt] = useState<string>("0")
   const [ethVal, setEthVal] = useState<string>("0")
+  const [sell, setSell] = useState<boolean>(false)
 
   return (
     <>
@@ -96,17 +98,23 @@ export const NFT = ({
             <div className="col-start-2 col-span-3  "></div>
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className=" col-start-1 col-span-2 lg:col-span-2 flex  items-center justify-center">
-              <p className="text-sm  text-center" >ETH</p>
+              <p className="text-sm  text-center" >{sell ? `u${displayName}` : "ETH"}</p>
             </div>
             <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
                 type="text"
-                value={ethVal}
+                value={sell ? uactualAmt : ethVal}
                 onChange={async (e) => {
-                  setEthVal(e.target.value)
-                  const data = await getAmtFromEth(amt, id, slug, Number(e.target.value))
-                  setActualAmt(data.toString())
-                  setuActualAmt(data.toFixed(5))
+                  if (sell) {
+                    setuActualAmt(e.target.value)
+                    const data = await quoteSell(Number(e.target.value), id, slug)
+                    setEthVal(data.total_price.toFixed(4))
+                  } else {
+                    setEthVal(e.target.value)
+                    const data = await getAmtFromEth(amt, id, slug, Number(e.target.value))
+                    setActualAmt(data.toString())
+                    setuActualAmt(data.toFixed(5))
+                  }
                 }}
                 placeholder="0.0"
                 className=" text-center rounded-full w-full p-1 text-black"
@@ -115,11 +123,11 @@ export const NFT = ({
             <div className="col-span-5 col-start-2 my-1"></div>
             <div className="col-start-1 col-span-1"></div>
             <div className="lg:col-start-2 col-start-3 flex justify-center col-span-6 ">
-              <Swap />
+              <Swap swap={sell} setSwap={setSell} />
             </div>
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className=" col-start-1 col-span-2 lg:col-span-2 flex items-center justify-center">
-              <p className="text-sm text-center">{"u" + displayName}</p>
+              <p className="text-sm text-center">{sell ? "ETH" : " u" + displayName}</p>
             </div>
             <div className="lg:col-start-3 lg:col-span-4 col-start-3 col-span-5 flex justify-center">
               <input
@@ -127,18 +135,25 @@ export const NFT = ({
                 placeholder="0.0"
                 className="text-center rounded-full w-full p-1 text-black"
                 onChange={async (e) => {
-                  setuActualAmt(e.target.value)
-                  const data = await quoteBuy(Number(e.target.value), id, slug)
-                  setEthVal(data.totalPrice.toFixed(4))
+                  if (sell) {
+                    setEthVal(e.target.value)
+                    const data = await getSellAmtFromEth(amt, id, slug, Number(e.target.value))
+                    setActualAmt(data.toString())
+                    setuActualAmt(data.toFixed(5))
+                  } else {
+                    setuActualAmt(e.target.value)
+                    const data = await quoteBuy(Number(e.target.value), id, slug)
+                    setEthVal(data.totalPrice.toFixed(4))
+                  }
                 }}
-                value={uactualAmt}
+                value={sell ? ethVal : uactualAmt}
               />
             </div>
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className="col-start-1 col-span-1 "></div>
             <div className="col-start-3 lg:col-start-2 col-span-6 ">
               <button className="w-full text-center text-xl lg:text-2xl text-blueText">
-                BUY
+                {sell ? "SELL" : "BUY"}
               </button>
             </div>
           </div>

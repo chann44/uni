@@ -59,7 +59,7 @@ export const TradeCard = () => {
         <div className="rounded-full  w-full text-center p-1  bg-transparent border">
           <select
             onChange={(e: any) => {
-              setuNFTdataToBy(e.target.value);
+              setnftID(e.target.value);
             }}
             className="rounded-full w-[80%]   text-center  bg-transparent "
           >
@@ -96,7 +96,7 @@ export const TradeCard = () => {
             />
           </div>
           <div className="col-start-1 col-span-6 flex justify-center">
-            <Swap />
+            <Swap setnftID />
           </div>
           <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
             <div className="w-4 ">

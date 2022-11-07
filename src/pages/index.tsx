@@ -4,7 +4,7 @@ import { Layout } from "@/components/Layout";
 import { NFTCard } from "@/components/Header";
 import { NFT } from "@/components/NFT/NFT";
 import { useAppContext, IuNFTData } from "@/context/AppContextProvider";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 // title for earn card on the homepage
@@ -40,12 +40,25 @@ interface RenderNum {
   num: number;
 }
 
-export const Swap = () => {
+export const Swap = ({ setSwap, swap }: { swap: boolean, setSwap: Dispatch<SetStateAction<boolean>> }) => {
   return (
-    <div className="bg-black/30 flex items-center justify-center w-8 h-8 rounded-full">
-      <FaArrowUp size={10} />
-      <FaArrowDown size={10} />
-    </div>
+    <>
+      {
+        swap ? <div onClick={() => {
+          setSwap(!swap)
+        }} className="bg-black/30 flex items-center justify-center w-8 h-8 rounded-full">
+          <FaArrowDown size={10} />
+          <FaArrowUp size={10} />
+        </div> :
+          <div onClick={() => {
+            setSwap(!swap)
+          }} className="bg-black/30 flex items-center justify-center w-8 h-8 rounded-full">
+            <FaArrowUp size={10} />
+            <FaArrowDown size={10} />
+          </div>
+
+      }
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import { stakingPeriods } from "@/context/AppContextProvider";
 import { ethers } from "ethers";
 import { quoteBuy } from "./useBuy";
+import { quoteSell } from "./useSell";
 
 export const toSqlDatetime = (inputDate) => {
   const date = new Date(inputDate);
@@ -102,5 +103,10 @@ export interface HIstoryData {
 export const getAmtFromEth = async (amt: number, id: number, slug: string, ethVal: number) => {
   const res = await quoteBuy(amt, id, slug)
   const baseprice = res.totalPrice
+  return ethVal / baseprice
+}
+export const getSellAmtFromEth = async (amt: number, id: number, slug: string, ethVal: number) => {
+  const res = await quoteSell(amt, id, slug)
+  const baseprice = res.total_price
   return ethVal / baseprice
 }
