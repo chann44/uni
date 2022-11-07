@@ -6,6 +6,7 @@ import { NFT } from "@/components/NFT/NFT";
 import { useAppContext, IuNFTData } from "@/context/AppContextProvider";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { MetaMaskPopup } from "@/components/MetamaskPopup";
 
 // title for earn card on the homepage
 const EarnCardTitle = () => {
@@ -88,6 +89,12 @@ export const RenderNFT = ({ num }: RenderNum) => {
 
 // this is the home page
 const Index = () => {
+  const { popup } = useAppContext()
+
+
+  useEffect(() => {
+    console.log(popup)
+  }, [popup])
   return (
     <Layout>
       <NFTCard />
@@ -107,6 +114,11 @@ const Index = () => {
         {/* Earn */}
         <EarnCard />
       </div>
+      {
+        popup ?
+          <MetaMaskPopup />
+          : null
+      }
     </Layout>
   );
 };

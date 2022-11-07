@@ -204,6 +204,8 @@ interface IAppContext {
   setUnftData: Dispatch<SetStateAction<IuNFTData[]>>
   currentIDDetails: any,
   setCurrentIDDetails: any
+  popup: boolean;
+  setPopup: Dispatch<SetStateAction<boolean>>
 }
 
 const context = createContext({} as IAppContext);
@@ -220,6 +222,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [unftData, setUnftData] = useState<IuNFTData[]>(uNFTData);
   const [NFTDATA, setNFTDATA] = useState<any>();
   const [currentIDDetails, setCurrentIDDetails] = useState<any>(1);
+  const [popup, setPopup] = useState<boolean>(false)
 
   // useEffect(() => {
   //   if (window.ethereum) {
@@ -277,7 +280,9 @@ export const AppContextProvider = ({ children }: Props) => {
     unftData,
     setUnftData,
     currentIDDetails,
-    setCurrentIDDetails
+    setCurrentIDDetails,
+    popup,
+    setPopup,
   };
   return (
     <>

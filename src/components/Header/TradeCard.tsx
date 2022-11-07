@@ -5,7 +5,6 @@ import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
 import { Swap } from "@/pages";
 import { useEffect, useState } from "react";
 import { AiOutlineInfo } from "react-icons/ai";
-import { BsChevronDown } from "react-icons/bs";
 
 
 interface feesData {
@@ -22,6 +21,7 @@ export const TradeCard = () => {
   const [ethVal, setEthVal] = useState<string>("")
   const [data, setData] = useState<feesData>()
   const [sell, setSell] = useState<boolean>(false)
+  const { address, setPopup, popup } = useAppContext()
 
 
   useEffect(() => {
@@ -144,7 +144,13 @@ export const TradeCard = () => {
             <p className="text-sm"><AiOutlineInfo className="font-extrabold text-blueText text-xl" /></p>
           </div>
         </div>
-        <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText ">
+        <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText " onClick={() => {
+          if (address === "") {
+            console.log(address)
+            console.log("i am running")
+            // setPopup(true)
+          }
+        }}>
           {sell ? "TRADE" : "BUY"}
         </button>
       </div>

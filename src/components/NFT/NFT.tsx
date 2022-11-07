@@ -1,8 +1,8 @@
 import { uNFTData, useAppContext } from "@/context/AppContextProvider";
 import { Swap } from "@/pages";
-import { Router, useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { FaArrowDown, FaLink } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { FaLink } from "react-icons/fa";
 import { Stats } from "../Header/Stats";
 import { quoteBuy } from "../../controllers/useBuy"
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
@@ -37,6 +37,7 @@ export const NFT = ({
   const [uactualAmt, setuActualAmt] = useState<string>("0")
   const [ethVal, setEthVal] = useState<string>("0")
   const [sell, setSell] = useState<boolean>(false)
+  const { address, setPopup, popup } = useAppContext()
 
   return (
     <>
@@ -152,7 +153,13 @@ export const NFT = ({
             <div className="col-span-5 col-start-2 my-2"></div>
             <div className="col-start-1 col-span-1 "></div>
             <div className="col-start-3 lg:col-start-2 col-span-6 ">
-              <button className="w-full text-center text-xl lg:text-2xl text-blueText">
+              <button className="w-full text-center text-xl lg:text-2xl text-blueText" onClick={() => {
+                if (address) {
+                  console.log("proceed")
+                } else {
+                  setPopup(true)
+                }
+              }}>
                 {sell ? "SELL" : "BUY"}
               </button>
             </div>
