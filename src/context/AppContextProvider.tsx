@@ -25,31 +25,29 @@ interface Props {
 }
 
 export interface IuNFTData {
-  id: number,
-  slug: string,
-  name: string,
-  display_name: string
-  img: string
-  floor_price: number,
-  total_supply: number,
-  num_owners: number,
-  total_volume: number
-  "24h_volume": number
-  belong: any,
-  bought: number,
-  in_hold: number,
-  history_data_table: string,
-  asset_address: string,
-  uasset_contract_address: string
-  variation_eth: number,
-  type: string,
-  count_onsale: number,
-  listed_ratio: number
-  url: string
-  uName: string
+  id: number;
+  slug: string;
+  name: string;
+  display_name: string;
+  img: string;
+  floor_price: number;
+  total_supply: number;
+  num_owners: number;
+  total_volume: number;
+  "24h_volume": number;
+  belong: any;
+  bought: number;
+  in_hold: number;
+  history_data_table: string;
+  asset_address: string;
+  uasset_contract_address: string;
+  variation_eth: number;
+  type: string;
+  count_onsale: number;
+  listed_ratio: number;
+  url: string;
+  uName: string;
 }
-
-
 
 export const stakingPeriods = {
   1: 604800,
@@ -58,7 +56,6 @@ export const stakingPeriods = {
   4: 21168000,
   5: 31449600,
 };
-
 
 const uNFTData: IuNFTData[] = [
   {
@@ -79,11 +76,11 @@ const uNFTData: IuNFTData[] = [
     num_owners: 0,
     total_supply: 0,
     total_volume: 0,
-    type: '',
+    type: "",
     asset_address: "",
     url: "",
     variation_eth: 0,
-    "24h_volume": 0
+    "24h_volume": 0,
   },
   {
     id: 2,
@@ -103,11 +100,11 @@ const uNFTData: IuNFTData[] = [
     num_owners: 0,
     total_supply: 0,
     total_volume: 0,
-    type: '',
+    type: "",
     asset_address: "",
     url: "",
     variation_eth: 0,
-    "24h_volume": 0
+    "24h_volume": 0,
   },
   {
     id: 3,
@@ -127,14 +124,13 @@ const uNFTData: IuNFTData[] = [
     num_owners: 0,
     total_supply: 0,
     total_volume: 0,
-    type: '',
+    type: "",
     asset_address: "",
     url: "",
     variation_eth: 0,
-    "24h_volume": 0
+    "24h_volume": 0,
   },
   {
-
     id: 4,
     name: "bored-ape-yacht-club",
     slug: "bored-ape-yacht-club",
@@ -152,11 +148,11 @@ const uNFTData: IuNFTData[] = [
     num_owners: 0,
     total_supply: 0,
     total_volume: 0,
-    type: '',
+    type: "",
     asset_address: "",
     url: "",
     variation_eth: 0,
-    "24h_volume": 0
+    "24h_volume": 0,
   },
   {
     id: 5,
@@ -176,38 +172,34 @@ const uNFTData: IuNFTData[] = [
     num_owners: 0,
     total_supply: 0,
     total_volume: 0,
-    type: '',
+    type: "",
     asset_address: "",
     url: "",
     variation_eth: 0,
-    "24h_volume": 0
-  }
-]
-
-
+    "24h_volume": 0,
+  },
+];
 
 interface IAppContext {
-  Lp_Address: string,
-  address: string,
-  setAddress: Dispatch<SetStateAction<string>>
-  provider: any
-  setProvider: Dispatch<SetStateAction<any>>
-  signer: any,
-  setSigner: Dispatch<SetStateAction<any>>
-  unftData: IuNFTData[]
-  setUnftData: Dispatch<SetStateAction<IuNFTData[]>>
-  currentIDDetails: any,
-  setCurrentIDDetails: any
+  Lp_Address: string;
+  address: string;
+  setAddress: Dispatch<SetStateAction<string>>;
+  provider: any;
+  setProvider: Dispatch<SetStateAction<any>>;
+  signer: any;
+  setSigner: Dispatch<SetStateAction<any>>;
+  unftData: IuNFTData[];
+  setUnftData: Dispatch<SetStateAction<IuNFTData[]>>;
+  currentIDDetails: any;
+  setCurrentIDDetails: any;
   popup: boolean;
-  setPopup: Dispatch<SetStateAction<boolean>>
+  setPopup: Dispatch<SetStateAction<boolean>>;
   stacking: boolean;
-  setStacking: Dispatch<SetStateAction<boolean>>,
-  setCurrentNFTData: Dispatch<SetStateAction<any>>
-  currentNFTData: any
+  setStacking: Dispatch<SetStateAction<boolean>>;
+  setCurrentNFTData: Dispatch<SetStateAction<IuNFTData>>;
+  currentNFTData: IuNFTData;
 }
-
 const context = createContext({} as IAppContext);
-
 export const useAppContext = () => {
   return useContext(context);
 };
@@ -220,9 +212,9 @@ export const AppContextProvider = ({ children }: Props) => {
   const [unftData, setUnftData] = useState<IuNFTData[]>(uNFTData);
   const [NFTDATA, setNFTDATA] = useState<any>();
   const [currentIDDetails, setCurrentIDDetails] = useState<any>(1);
-  const [popup, setPopup] = useState<boolean>(false)
-  const [stacking, setStacking] = useState<boolean>(false)
-  const [currentNFTData, setCurrentNFTData] = useState<any>();
+  const [popup, setPopup] = useState<boolean>(false);
+  const [stacking, setStacking] = useState<boolean>(false);
+  const [currentNFTData, setCurrentNFTData] = useState<IuNFTData>();
   // useEffect(() => {
   //   if (window.ethereum) {
   //     console.log("MetaMask is not installed");
@@ -252,21 +244,35 @@ export const AppContextProvider = ({ children }: Props) => {
 
   useEffect(() => {
     (async () => {
-      let newuNFtData = []
+      let newuNFtData: IuNFTData[] = [];
       const res = await axios.post("https://wegroup.app/searchNFTList");
-      const nftData: IuNFTData[] = res.data.NFTInfo
+      const nftData: IuNFTData[] = res.data.NFTInfo;
       for (let i = 0; i < nftData.length; i++) {
-        let unft = unftData[i]
-        let nft = nftData[i]
-        console.log("yeh", nft)
+        let unft = unftData[i];
+        let nft = nftData[i];
+        console.log("yeh", nft);
         newuNFtData.push({
-          ...unft, name: nft.name, url: nft.url, asset_address: nft.asset_address, "24h_volume": nft["24h_volume"], floor_price: nft.floor_price, belong: nft.belong, bought: nft.bought, count_onsale: nft.count_onsale, history_data_table: nft.history_data_table, in_hold: nft.in_hold, variation_eth: nft.variation_eth
-        })
+          ...unft,
+          name: nft.name,
+          url: nft.url,
+          asset_address: nft.asset_address,
+          "24h_volume": nft["24h_volume"],
+          floor_price: nft.floor_price,
+          belong: nft.belong,
+          bought: nft.bought,
+          count_onsale: nft.count_onsale,
+          history_data_table: nft.history_data_table,
+          in_hold: nft.in_hold,
+          variation_eth: nft.variation_eth,
+          total_volume: nft.total_volume,
+          total_supply: nft.total_supply,
+          listed_ratio: nft.listed_ratio,
+          slug: nft.slug,
+        });
       }
-      setUnftData(newuNFtData)
+      setUnftData(newuNFtData);
     })();
   }, []);
-
 
   const shared_value = {
     Lp_Address,
@@ -285,7 +291,7 @@ export const AppContextProvider = ({ children }: Props) => {
     stacking,
     setStacking,
     currentNFTData,
-    setCurrentNFTData
+    setCurrentNFTData,
   };
   return (
     <>
