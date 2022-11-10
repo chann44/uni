@@ -47,7 +47,7 @@ export const DetailsComponet = () => {
       (
         async () => {
           const res = await getData(30, currentNFTData.history_data_table, currentNFTData.slug)
-          console.log(res)
+
           const temp = res.NFTHistoryInfo
           setHistoryData90(prev => [...prev, ...temp])
         }
@@ -57,8 +57,8 @@ export const DetailsComponet = () => {
 
 
   useEffect(() => {
-    console.log("history data", chartData)
-    console.log("history data", historyData90)
+
+
   }, [chartData])
 
 
@@ -90,7 +90,7 @@ export const DetailsComponet = () => {
 
 
   useEffect(() => {
-    console.log(currentIDDetails)
+
     unftData &&
       unftData.map((nft: any) => {
         if (nft.id == currentIDDetails) {

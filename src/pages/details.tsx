@@ -8,7 +8,7 @@ const Details = ({ data }) => {
     useAppContext();
 
 
-  console.log(data)
+
   return (
     <div
       className="min-h-screen w-full relative bg-center -mb-10 -mt-6 "

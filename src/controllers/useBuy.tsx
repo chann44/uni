@@ -3,7 +3,7 @@ import { addTokenToWallet, sendRawTxn } from "./uttils";
 import qs from "qs"
 
 export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
-  console.log("slug is here ", slug)
+
   const res = await axios("https://wegroup.app/calBuyUNFTPrice", {
     method: "POST",
     headers: {
@@ -15,7 +15,7 @@ export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
       slug: slug,
     }),
   });
-  console.log(res)
+
   return {
     totalPrice: res.data.UNftPriceInfo.price_needed,
     transferFess: res.data.UNftPriceInfo.transferFee,
@@ -30,15 +30,15 @@ export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
 //   let buyValEth = _value;
 //   let productId = _product;
 //   if (address == null) {
-//     console.log("Please connect your wallet");
+//     
 //     alert("Please connect your wallet");
 //     return;
 //   }
 //   sendRawTxn(vaultAddr, buyValEth, address, signer).then(async (hs) => {
 //     let finalQuote = await quoteBuy(1, parseInt(productId), uNFTData);
 //     let buyValUNFT = buyValEth / finalQuote[0];
-//     console.log(buyValUNFT);
-//     console.log(hs);
+//     
+//     
 //     const res = await axios("https://wegroup.app/buyNFT", {
 //       method: "POST",
 //       data: {
@@ -58,7 +58,7 @@ export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
 //         uNFTData[productId][3]
 //       );
 //     } else if (res.status == 500) {
-//       console.log(res.data);
+//       
 //     }
 //   });
 // }

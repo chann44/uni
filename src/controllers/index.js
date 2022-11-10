@@ -57,7 +57,7 @@
 // let uMoonBirdsInstance;
 
 // if (!window.ethereum) {
-//   console.log("MetaMask is not installed");
+//   
 // } else {
 //   provider = new ethers.providers.Web3Provider(window.ethereum);
 //   signer = provider.getSigner();
@@ -106,7 +106,7 @@
 //   let txn = await LP.stake(_plan, txnValue);
 //   let result = await txn.wait();
 //   if (result.events[0].event == "userStakeTxn") {
-//     console.log("Success");
+//     
 //   }
 // }
 
@@ -116,7 +116,7 @@
 //   let txn = await LP.unstake(_index);
 //   let result = await txn.wait();
 //   if (result.events[0].event == "userUnstakeTxn") {
-//     console.log("Success");
+//     
 //   }
 // }
 
@@ -186,7 +186,7 @@
 // // }
 
 // async function quoteBuy(_unftNum, _nftId) {
-//   console.log(_nftId);
+//   
 //   let result = []; // total price, transfer fee, poundage, premium
 //   let _slug = uNFTData[_nftId][0]; // should be determined automatically
 //   var settings = {
@@ -210,7 +210,7 @@
 //     result.push(response.UNftPriceInfo.premiumFee);
 //   });
 
-//   console.log(result);
+//   
 //   return result;
 // }
 
@@ -242,21 +242,21 @@
 // }
 
 // function processBuy(_value, _product) {
-//   console.log(_domArr);
+//   
 //   let vaultAddr = "0x85D546B0a97775D1553C2aAeE7c191211D3740Cd"; // smart contract 
 //   let address = window.userWalletAddress;
 //   let buyValEth = _value;
 //   let productId = _product;
 //   if (address == null) {
-//     console.log("Please connect your wallet");
+//     
 //     alert("Please connect your wallet");
 //     return;
 //   }
 //   sendRawTxn(vaultAddr, buyValEth).then(async (hs) => {
 //     let finalQuote = await quoteBuy(1, parseInt(productId));
 //     let buyValUNFT = buyValEth / finalQuote[0];
-//     console.log(buyValUNFT);
-//     console.log(hs);
+//     
+//     
 //     $.ajax({
 //       method: "POST",
 //       url: "https://wegroup.app/buyNFT",
@@ -276,7 +276,7 @@
 //             uNFTData[productId][3]
 //           );
 //         } else if (data.code == 500) {
-//           console.log(data.msg);
+//           
 //         }
 //       },
 //     });
@@ -289,14 +289,14 @@
 //   let sellVal = _value;
 //   let productId = _product;
 //   if (address == null) {
-//     console.log("Please connect your wallet");
+//     
 //     return;
 //   }
 //   approve(_product, approveAddr, sellVal).then(async (hs) => {
 //     _domArr[0].classList.add("no-display");
 //     _domArr[1].classList.remove("no-display");
 
-//     console.log(hs);
+//     
 //     $.ajax({
 //       method: "POST",
 //       url: "https://wegroup.app/sellNFT",
@@ -309,9 +309,9 @@
 //       },
 //       success: function (data) {
 //         if (data.code == 200) {
-//           console.log("done")
+//           
 //        } else if (data.code == 500) {
-//           console.log(data.msg);
+//           
 //         }
 //       },
 //     });

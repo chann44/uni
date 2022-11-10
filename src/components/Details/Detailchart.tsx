@@ -76,10 +76,10 @@ export const ChartComponent = ({ data }: { data: HIstoryData[] }) => {
             }
         })
 
-        console.log("yo", resultHisto)
 
 
-        console.log("response", result);
+
+
         const handleResize = () => {
             chart.applyOptions({ width: chartContainerRef.current.clientWidth });
         };

@@ -27,7 +27,7 @@ export async function quoteSell(_unftNum: number, _nftId: number, slug: string) 
 //   let sellVal = _value;
 //   let productId = _product;
 //   if (address == null) {
-//     console.log("Please connect your wallet");
+//     
 //     return;
 //   }
 //   approve(_product, approveAddr, sellVal, unftData).then(async (hs) => {
@@ -42,9 +42,9 @@ export async function quoteSell(_unftNum: number, _nftId: number, slug: string) 
 //       },
 //     });
 //     if (res.status == 201) {
-//       console.log("done");
+//       
 //     } else if (res.status == 501) {
-//       console.log(res.data);
+//       
 //     }
 //   });
 // }

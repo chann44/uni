@@ -34,9 +34,9 @@ export const NFT = ({
   const router = useRouter();
   const { currentIDDetails, setCurrentIDDetails, unftData } = useAppContext();
   const [amt, setAmt] = useState<number>(1)
-  const [actualAmt, setActualAmt] = useState<string>("0")
-  const [uactualAmt, setuActualAmt] = useState<string>("0")
-  const [ethVal, setEthVal] = useState<string>("0")
+  const [actualAmt, setActualAmt] = useState<string>("")
+  const [uactualAmt, setuActualAmt] = useState<string>("")
+  const [ethVal, setEthVal] = useState<string>("")
   const [sell, setSell] = useState<boolean>(false)
   const { address, setPopup, popup } = useAppContext()
 
@@ -156,7 +156,7 @@ export const NFT = ({
             <div className="col-start-3 lg:col-start-2 col-span-6 ">
               <button className="w-full text-center text-xl lg:text-2xl text-blueText" onClick={() => {
                 if (address) {
-                  console.log("proceed")
+
                 } else {
                   setPopup(true)
                 }

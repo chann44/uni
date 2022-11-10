@@ -1,7 +1,7 @@
 
 
 function businessDayToString(businessDay) {
-    console.log(businessDay);
+
     return (
         businessDay.year +
         "-" +
@@ -53,7 +53,7 @@ const RenderChart = (time, onlyRenderChart, dom: ) => {
         } else if (date.getDate() == 7) {
             _7d_vari =
                 ((NFTInfo.floor_price - kv["floor_price"]) * 100) / kv["floor_price"]; //今天-30天前 / 今天
-            // console.log(_7d_vari);
+            // 
         }
         // const dt = Date.parse(kv["time"]); 用下面这行的方案，否则在IOS系统的浏览器中会出问题
         const dt = new Date(Date.parse(kv["time"].replace(/[-]/g, "/")));
@@ -181,7 +181,7 @@ const RenderChart = (time, onlyRenderChart, dom: ) => {
         ) {
             toolTip.style.display = "none";
         } else {
-            console.log(param.time);
+
             var dateStr = LightweightCharts.isBusinessDay(param.time)
                 ? businessDayToString(param.time)
                 : toDateString(new Date(param.time * 1000));
@@ -205,7 +205,7 @@ const RenderChart = (time, onlyRenderChart, dom: ) => {
             var coordinate = areaSeries.priceToCoordinate(price);
 
             var shiftedCoordinate = param.point.x - 50;
-            // console.log(param)
+            // 
             if (coordinate === null) {
                 return;
             }
@@ -228,7 +228,7 @@ const RenderChart = (time, onlyRenderChart, dom: ) => {
             var actualLeft =
                 document.getElementsByClassName("unft_info")[0].offsetLeft;
             var actualTop = document.getElementsByClassName("unft_info")[0].offsetTop;
-            // console.log(actualLeft);
+            // 
             toolTip.style.left = (shiftedCoordinate + actualLeft) * 0.9 + "px";
             toolTip.style.top = (coordinateY + actualTop) * 1 + "px";
         }
@@ -283,7 +283,7 @@ const RenderChart = (time, onlyRenderChart, dom: ) => {
 
     //渲染右边数据
     let sales_data = ret.sales_data[0];
-    console.log(sales_data);
+
     const detailInfoElement = document.getElementById("detailInfo");
     const Category = [
         "Volume(24H)",
@@ -390,8 +390,8 @@ function toDateString(date) {
 renderChart(30, false).then((chart) => {
     function resize() {
         const domElement = document.getElementById("tvchart");
-        // console.log(domElement);
-        // console.log(domElement.clientWidth);
+        // 
+        // 
         chart.resize(domElement.clientWidth, domElement.clientHeight);
         // chart.resize(domElement.clientWidth, 600);
         chart.timeScale().fitContent();

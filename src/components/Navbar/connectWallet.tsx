@@ -11,7 +11,7 @@ export const ConnectWallet = () => {
     const { ethereum } = window as any;
     try {
       if (!ethereum) {
-        console.log("no wallet");
+
         sethaveMetamask(false);
       }
       const accounts = await ethereum.request({
@@ -29,13 +29,13 @@ export const ConnectWallet = () => {
   }, []);
 
   useEffect(() => {
-    console.log(address);
+
   });
 
   return (
     <button
       onClick={() => {
-        console.log("hi");
+
         connectWallet();
       }}
       className="connectWallet text-text px-6 py-1"

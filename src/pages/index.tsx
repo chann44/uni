@@ -92,7 +92,7 @@ export const RenderNFT = ({ num }: RenderNum) => {
 const Index = () => {
   const { popup, stacking } = useAppContext()
   useEffect(() => {
-    console.log(popup)
+
   }, [popup])
 
   return (

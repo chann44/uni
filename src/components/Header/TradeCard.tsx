@@ -25,7 +25,7 @@ export const TradeCard = () => {
   useEffect(() => {
     unftData.map((nft) => {
       if (nft.id == nftId) {
-        console.log(nft)
+
         setuNFTdataToBy((prev: any) => {
           return { ...prev, ...nft }
         })
@@ -54,7 +54,7 @@ export const TradeCard = () => {
         <div className="rounded-full  w-full text-center p-1  bg-transparent border">
           <select
             onChange={(e: any) => {
-              console.log(e.target.value)
+
               setnftID(e.target.value);
               setEthVal("")
               setuActualAmt("")
@@ -140,8 +140,8 @@ export const TradeCard = () => {
         </div>
         <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText " onClick={() => {
           if (address === "") {
-            console.log(address)
-            console.log("i am running")
+
+
           }
         }}>
           {sell ? "TRADE" : "BUY"}

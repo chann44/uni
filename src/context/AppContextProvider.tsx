@@ -217,7 +217,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [currentNFTData, setCurrentNFTData] = useState<IuNFTData>();
   // useEffect(() => {
   //   if (window.ethereum) {
-  //     console.log("MetaMask is not installed");
+  //     
   //   } else {
   //     setProvider(new ethers.providers.Web3Provider(window.ethereum));
   //     setSigner(Provider.getSigner());

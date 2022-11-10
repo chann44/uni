@@ -9,7 +9,7 @@ export async function stake(_value, _plan) {
   let txn = await LP.stake(_plan, txnValue);
   let result = await txn.wait();
   if (result.events[0].event == "userStakeTxn") {
-    console.log("Success");
+    
   }
 }
 
@@ -19,6 +19,6 @@ export async function unstake(_index) {
   let txn = await LP.unstake(_index);
   let result = await txn.wait();
   if (result.events[0].event == "userUnstakeTxn") {
-    console.log("Success");
+    
   }
 }

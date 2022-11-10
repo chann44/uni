@@ -17,9 +17,9 @@ export const Stats = ({ floorPrice, variation, displayName, slug, history_data_t
   useEffect(() => {
     (
       async () => {
-        console.log(slug)
+
         const res = await getData(7, history_data_table, slug)
-        console.log(res)
+
         setHistoryData((prev: any) => {
           return res.NFTHistoryInfo
         }
@@ -30,7 +30,7 @@ export const Stats = ({ floorPrice, variation, displayName, slug, history_data_t
 
 
   useEffect(() => {
-    console.log(historydata)
+
   }, [historydata])
 
 
