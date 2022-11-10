@@ -27,6 +27,7 @@ interface Props {
 export interface IuNFTData {
   id: number;
   slug: string;
+  description?: string
   name: string;
   display_name: string;
   img: string;
@@ -252,6 +253,7 @@ export const AppContextProvider = ({ children }: Props) => {
         let nft = nftData[i];
         newuNFtData.push({
           ...unft,
+          description: nft.description,
           name: nft.name,
           url: nft.url,
           asset_address: nft.asset_address,
@@ -272,6 +274,8 @@ export const AppContextProvider = ({ children }: Props) => {
       setUnftData(newuNFtData);
     })();
   }, []);
+
+
 
   const shared_value = {
     Lp_Address,

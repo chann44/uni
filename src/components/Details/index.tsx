@@ -24,6 +24,31 @@ interface Isales {
   sales_7d_lowest_price_variation: number
 }
 
+
+var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
+
+function abbreviateNumber(number: number) {
+
+  // what tier? (determines SI symbol)
+  var tier = Math.log10(Math.abs(number)) / 3 | 0;
+
+  // if zero, we don't need a suffix
+  if (tier == 0) return number;
+
+  // get suffix and determine scale
+  var suffix = SI_SYMBOL[tier];
+  var scale = Math.pow(10, tier * 3);
+
+  // scale the number
+  var scaled = number / scale;
+
+  // format number and add suffix
+  return scaled.toFixed(1) + suffix;
+}
+
+
+
+
 export const DetailsComponet = () => {
   const Days = [3, 7, 30, 90, 365]
   const { currentIDDetails, currentNFTData, setCurrentNFTData, setCurrentIDDetails, unftData } =
@@ -39,15 +64,11 @@ export const DetailsComponet = () => {
   const [forteenDaysAvgVari, set14DaysAvgVari] = useState<number>()
   const [thirtyDaysAvgVari, set30DaysAvgVari] = useState<number>()
 
-
-
-
   useEffect(() => {
     if (currentNFTData?.history_data_table) {
       (
         async () => {
           const res = await getData(30, currentNFTData.history_data_table, currentNFTData.slug)
-
           const temp = res.NFTHistoryInfo
           setHistoryData90(prev => [...prev, ...temp])
         }
@@ -57,10 +78,8 @@ export const DetailsComponet = () => {
 
 
   useEffect(() => {
-
-
-  }, [chartData])
-
+    console.log(sales)
+  }, [sales])
 
   useEffect(() => {
     if (historyData90) {
@@ -90,7 +109,6 @@ export const DetailsComponet = () => {
 
 
   useEffect(() => {
-
     unftData &&
       unftData.map((nft: any) => {
         if (nft.id == currentIDDetails) {
@@ -103,16 +121,20 @@ export const DetailsComponet = () => {
   }, [currentIDDetails, unftData]);
 
 
+
+
   const fetchData = async () => {
     const data = await getData(30, currentNFTData.history_data_table, currentNFTData.slug)
-    setSales(data.sales_data[0])
+    if (data.sales_data !== undefined) {
+      setSales(data.sales_data[0])
+    }
   }
 
 
   useEffect(() => {
     if (!currentNFTData) return
     fetchData()
-  }, [])
+  }, [currentNFTData])
 
   return (
     <div className="space-y-20">
@@ -123,7 +145,7 @@ export const DetailsComponet = () => {
           </div>
           <div className="w-full text-center px-5 sm:max-w-3xl space-y-6">
             <h1 className="text-3xl">{currentNFTData?.slug}</h1>
-            <p className="text-xl">discription dont know yet</p>
+            <p className="text-xl">{currentNFTData?.description}</p>
           </div>
         </div>
       )}
@@ -146,40 +168,40 @@ export const DetailsComponet = () => {
                     <p className="text-xl">-0.42%</p>
                   </div>
                 </div>
-                <div className="flex justify-center  space-x-6">
+                <div className="flex justify-center  space-x-4">
                   <div className="flex flex-col items-center">
-                    <h1 className="text-xl font-extrabold">24h</h1>
+                    <h1 className="text-lg font-extrabold">24h</h1>
                     <p className={"text-sm text-pink"}>{currentNFTData?.variation_eth}%</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <h1 className="text-xl font-extrabold">7d</h1>
+                    <h1 className="text-lg font-extrabold">7d</h1>
                     <p className={"text-sm text-green-500"}>{sevenDayAvgVari?.toFixed(2)}%</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <h1 className="text-xl font-extrabold">14d</h1>
+                    <h1 className="text-lg font-extrabold">14d</h1>
                     <p className={"text-sm text-green-500"}>{forteenDaysAvgVari?.toFixed(2)}%</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <h1 className="text-xl font-extrabold">30d</h1>
+                    <h1 className="text-lg font-extrabold">30d</h1>
                     <p className={"text-sm text-pink"}>{thirtyDaysAvgVari?.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
               <div className="flex justify-center space-x-6 sm:space-x-4 order-0">
                 <div className="flex flex-col items-center">
-                  <h1 className="text-xl font-extrabold">24k</h1>
+                  <h1 className="text-lg font-extrabold">{abbreviateNumber(currentNFTData?.total_supply)}</h1>
                   <p className="text-sm">items</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-xl font-extrabold">200k</h1>
+                  <h1 className="text-xl font-extrabold">{abbreviateNumber(5200)}</h1>
                   <p className="text-sm">Owners</p>
                 </div>
                 <div className="hidden lg:flex flex-col items-center">
-                  <h1 className="text-xl font-extrabold"> 11.1 ETH</h1>
+                  <h1 className="text-lg font-extrabold"> {currentNFTData?.floor_price.toFixed(3)}ETH</h1>
                   <p className="text-sm">floor price</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-xl font-extrabold">240k</h1>
+                  <h1 className="text-xl font-extrabold">{abbreviateNumber(currentNFTData?.total_volume)}</h1>
                   <p className="text-sm">Volumetraded</p>
                 </div>
               </div>
@@ -279,56 +301,58 @@ export const DetailsComponet = () => {
               chartData ? <DetailsChart history_data_table={currentNFTData?.history_data_table} slug={currentNFTData?.slug} /> : <p>loading</p>
             }
           </div>
-          <div className="w-[20%] max-w-sm min-h-[400px] space-y-6 flex flex-col  ">
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Volume(24h)</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{sales?.sales_24h_volume.toFixed(2)}</span>
-                <span className="text-xs text-pink">{sales?.sales_24h_volume_variation.toFixed(2)}</span>
+          {sales &&
+            <div className="w-[20%] max-w-sm min-h-[400px] space-y-6 flex flex-col  ">
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Volume(24h)</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{sales?.sales_24h_volume?.toFixed(2)}</span>
+                  <span className="text-xs text-pink">{sales?.sales_24h_volume_variation?.toFixed(2)}</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Sales(24h)</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{sales?.num_sales_24h}</span>
+                  <span className="text-xs text-pink">{sales?.num_sales_24h_variation}</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Avarage Sales(7D)</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{sales?.sales_7d_avg_price}</span>
+                  <span className="text-xs text-pink">-8.24%</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Lowest Sales(7D)</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{sales?.sales_7d_lowest_price}</span>
+                  <span className="text-xs text-pink">{sales?.sales_7d_lowest_price}</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Higehst Sales(7D)</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{sales?.sales_7d_highest_price}</span>
+                  <span className="text-xs text-pink">{sales?.sales_7d_lowest_price_variation}</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Listed/Supply</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{currentNFTData?.in_hold}</span>
+                  <span className="text-xs text-pink">{currentNFTData?.total_supply}</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-extrabold">Listed Ratio</p>
+                <div className="text-xs space-x-2">
+                  <span className="text-xs">{currentNFTData?.listed_ratio}</span>
+                </div>
               </div>
             </div>
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Sales(24h)</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{sales?.num_sales_24h}</span>
-                <span className="text-xs text-pink">{sales?.num_sales_24h_variation}</span>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Avarage Sales(7D)</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{sales?.sales_7d_avg_price}</span>
-                <span className="text-xs text-pink">-8.24%</span>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Lowest Sales(7D)</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{sales?.sales_7d_lowest_price}</span>
-                <span className="text-xs text-pink">{sales?.sales_7d_lowest_price}</span>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Higehst Sales(7D)</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{sales?.sales_7d_highest_price}</span>
-                <span className="text-xs text-pink">{sales?.sales_7d_lowest_price_variation}</span>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Listed/Supply</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{currentNFTData?.in_hold}</span>
-                <span className="text-xs text-pink">{currentNFTData?.total_supply}</span>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm font-extrabold">Listed Ratio</p>
-              <div className="text-xs space-x-2">
-                <span className="text-xs">{currentNFTData?.listed_ratio}</span>
-              </div>
-            </div>
-          </div>
+          }
         </div>
       </div>
     </div>
