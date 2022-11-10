@@ -250,7 +250,6 @@ export const AppContextProvider = ({ children }: Props) => {
       for (let i = 0; i < nftData.length; i++) {
         let unft = unftData[i];
         let nft = nftData[i];
-        console.log("yeh", nft);
         newuNFtData.push({
           ...unft,
           name: nft.name,

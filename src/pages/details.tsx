@@ -3,15 +3,18 @@ import { Layout } from "@/components/Layout";
 import { useAppContext } from "@/context/AppContextProvider";
 import { useState } from "react";
 
-const Details = () => {
+const Details = ({ data }) => {
   const { currentIDDetails, setCurrentIDDetails, unftData, currentNFTData } =
     useAppContext();
+
+
+  console.log(data)
   return (
     <div
       className="min-h-screen w-full relative bg-center -mb-10 -mt-6 "
     >
       <div className="absolute border w-full h-full z-10 top-0 bottom-0">
-        <img className="w-full h-full object-cover" src={currentNFTData.img} alt="" />
+        <img className="w-full h-full object-cover" src={currentNFTData?.img} alt="" />
       </div>
       <div className="min-h-screen relative  z-30">
         <Layout>
@@ -22,5 +25,15 @@ const Details = () => {
     </div>
   );
 };
+
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const data = {
+    name: "vikash"
+  }
+  // Pass data to the page via props
+  return { props: { data } }
+}
 
 export default Details;

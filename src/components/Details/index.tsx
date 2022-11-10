@@ -29,26 +29,37 @@ export const DetailsComponet = () => {
   const { currentIDDetails, currentNFTData, setCurrentNFTData, setCurrentIDDetails, unftData } =
     useAppContext();
   const [sales, setSales] = useState<Isales>()
+  const [currentSelectedTime, setCuretSelectedTime] = useState(Days[2])
+  const [chartData, setChartData] = useState<HIstoryData[]>([])
 
   // data for charts
-  const [historyData, setHistoryDat] = useState()
-  const [historyData90, setHistoryData90] = useState<HIstoryData[]>()
+  const [historyData90, setHistoryData90] = useState<HIstoryData[]>([])
   // avg prices 
   const [sevenDayAvgVari, set7DaysAvgVari] = useState<number>()
   const [forteenDaysAvgVari, set14DaysAvgVari] = useState<number>()
   const [thirtyDaysAvgVari, set30DaysAvgVari] = useState<number>()
 
 
+
+
   useEffect(() => {
     if (currentNFTData?.history_data_table) {
       (
         async () => {
-          const res = await getData(90, currentNFTData.history_data_table, currentNFTData.slug)
-          setHistoryData90(res.NFTHistoryInfo)
+          const res = await getData(30, currentNFTData.history_data_table, currentNFTData.slug)
+          console.log(res)
+          const temp = res.NFTHistoryInfo
+          setHistoryData90(prev => [...prev, ...temp])
         }
       )()
     }
   }, [currentNFTData])
+
+
+  useEffect(() => {
+    console.log("history data", chartData)
+    console.log("history data", historyData90)
+  }, [chartData])
 
 
   useEffect(() => {
@@ -138,19 +149,19 @@ export const DetailsComponet = () => {
                 <div className="flex justify-center  space-x-6">
                   <div className="flex flex-col items-center">
                     <h1 className="text-xl font-extrabold">24h</h1>
-                    <p className="text-sm text-pink">{currentNFTData?.variation_eth}%</p>
+                    <p className={"text-sm text-pink"}>{currentNFTData?.variation_eth}%</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <h1 className="text-xl font-extrabold">7d</h1>
-                    <p className="text-sm text-green-500">{sevenDayAvgVari?.toFixed(2)}%</p>
+                    <p className={"text-sm text-green-500"}>{sevenDayAvgVari?.toFixed(2)}%</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <h1 className="text-xl font-extrabold">14d</h1>
-                    <p className="text-sm text-green-500">{forteenDaysAvgVari?.toFixed(2)}%</p>
+                    <p className={"text-sm text-green-500"}>{forteenDaysAvgVari?.toFixed(2)}%</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <h1 className="text-xl font-extrabold">30d</h1>
-                    <p className="text-sm text-pink">{thirtyDaysAvgVari?.toFixed(2)}</p>
+                    <p className={"text-sm text-pink"}>{thirtyDaysAvgVari?.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -264,7 +275,9 @@ export const DetailsComponet = () => {
         </div>
         <div className="flex justify-between space-x-3 py-8">
           <div className="w-[80%] ">
-            <DetailsChart />
+            {
+              chartData ? <DetailsChart history_data_table={currentNFTData?.history_data_table} slug={currentNFTData?.slug} /> : <p>loading</p>
+            }
           </div>
           <div className="w-[20%] max-w-sm min-h-[400px] space-y-6 flex flex-col  ">
             <div className="space-y-1">

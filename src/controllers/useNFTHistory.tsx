@@ -3,7 +3,6 @@ import { toSqlDatetime } from "./uttils";
 import qs from "qs"
 
 export const getData = async (time, history_data_table, slug) => {
-  console.log(time, history_data_table, slug)
   let timeMax: any = new Date();
   var timeMin: any = new Date(
     new Date().getTime() - time * 24 * 60 * 60 * 1000
