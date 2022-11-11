@@ -199,6 +199,7 @@ interface IAppContext {
   setStacking: Dispatch<SetStateAction<boolean>>;
   setCurrentNFTData: Dispatch<SetStateAction<IuNFTData>>;
   currentNFTData: IuNFTData;
+  Lp: any
 }
 const context = createContext({} as IAppContext);
 export const useAppContext = () => {
@@ -216,6 +217,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [popup, setPopup] = useState<boolean>(false);
   const [stacking, setStacking] = useState<boolean>(false);
   const [currentNFTData, setCurrentNFTData] = useState<IuNFTData>();
+  const [Lp, setLp] = useState<any>()
   // useEffect(() => {
   //   if (window.ethereum) {
   //     
@@ -242,6 +244,16 @@ export const AppContextProvider = ({ children }: Props) => {
   //     setUnftData(uNFTData[5].push(uMoonBirdsInstance));
   //   }
   // }, []);
+
+
+  useEffect(() => {
+    const LP_addr = "0xacf64aD70D1ED44d094b8816b10B3A76df001b3d";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    setSigner(signer)
+    const Lp = new ethers.Contract("0xacf64aD70D1ED44d094b8816b10B3A76df001b3d", LP_ABI, signer);
+    setLp(Lp)
+  }, [])
 
   useEffect(() => {
     (async () => {
@@ -295,6 +307,7 @@ export const AppContextProvider = ({ children }: Props) => {
     setStacking,
     currentNFTData,
     setCurrentNFTData,
+    Lp
   };
   return (
     <>

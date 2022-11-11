@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FaLink } from "react-icons/fa";
 import { Stats } from "../Header/Stats";
-import { quoteBuy } from "../../controllers/useBuy"
+import { processBuy, quoteBuy } from "../../controllers/useBuy"
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
 import { quoteSell } from "@/controllers/useSell";
 import { Loading } from "../Loading";
 
 
-interface INFTInfo {
+export interface INFTInfo {
   id: number;
   name: string;
   slug: string;
@@ -19,6 +19,7 @@ interface INFTInfo {
   variation: number;
   displayName: string;
   history_data_table: string
+  asset_address: string
 }
 
 export const NFT = ({
@@ -29,10 +30,11 @@ export const NFT = ({
   floorPrice,
   variation,
   displayName,
-  history_data_table
+  history_data_table,
+  asset_address
 }: INFTInfo) => {
   const router = useRouter();
-  const { currentIDDetails, setCurrentIDDetails, unftData } = useAppContext();
+  const { currentIDDetails, setCurrentIDDetails, unftData, signer } = useAppContext();
   const [amt, setAmt] = useState<number>(1)
   const [actualAmt, setActualAmt] = useState<string>("")
   const [uactualAmt, setuActualAmt] = useState<string>("")
@@ -156,7 +158,14 @@ export const NFT = ({
             <div className="col-start-3 lg:col-start-2 col-span-6 ">
               <button className="w-full text-center text-xl lg:text-2xl text-blueText" onClick={() => {
                 if (address) {
-
+                  if (sell) {
+                    console.log("we are gonna seel")
+                  } else {
+                    console.log("we are gonna buy you know that")
+                    processBuy(ethVal, {
+                      asset_address, id, img, slug, displayName, floorPrice, history_data_table, name, variation
+                    }, address, signer)
+                  }
                 } else {
                   setPopup(true)
                 }

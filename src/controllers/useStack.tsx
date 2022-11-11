@@ -1,17 +1,23 @@
 import { useAppContext } from "@/context/AppContextProvider";
 import { ethers } from "ethers";
 import { getDateFromUnixTimestamp } from "./uttils";
+import {
+  LP_ABI,
+  uAzuki,
+  uBeanz,
+  uDoodles,
+  uBoredApe,
+  uMoonBirds,
+} from "./ABI.js";
 
-export async function stake(_value, _plan) {
-  const LP: any = {}
-  if (ethers.utils.parseEther(_value).toNumber() == 0) {
-    return;
-  }
+
+
+export async function stake(_value, _plan, Lp) {
   let txnValue = { value: ethers.utils.parseEther(_value) };
-  let txn = await LP.stake(_plan, txnValue);
+  let txn = await Lp.stake(_plan, txnValue);
   let result = await txn.wait();
   if (result.events[0].event == "userStakeTxn") {
-
+    console.log("txn happende")
   }
 }
 
@@ -25,18 +31,18 @@ export async function unstake(_index) {
   }
 }
 
-export async function getStakeInfo() {
-  const { address } = useAppContext();
-  const LP: any = ""
+export async function getStakeInfo(address, Lp) {
   let result = [];
-  let account = await LP.accounts(address);
+  console.log(Lp)
+
+  let account = await Lp.accounts("0xA3BCE4E423970ca35C4339500Cac0BC5c439CD29");
   let upIndex = parseInt(account._hex, 16);
   for (let i = 0; i < upIndex; i++) {
     let currentInd = `${i}`;
-    let reward = await LP.getReward(address, currentInd);
-    let pricipal = await LP.getPrincipal(address, currentInd);
-    let duration = await LP.getDuration(address, currentInd);
-    let begTime = await LP.getBegTime(address, currentInd);
+    let reward = await Lp.getReward(address, currentInd);
+    let pricipal = await Lp.getPrincipal(address, currentInd);
+    let duration = await Lp.getDuration(address, currentInd);
+    let begTime = await Lp.getBegTime(address, currentInd);
     let rewardFormatted = parseInt(reward._hex, 16) / 10 ** 18;
     let pricipalFormatted = parseInt(pricipal._hex, 16) / 10 ** 18;
     let unlockTimeFormatted = getDateFromUnixTimestamp(

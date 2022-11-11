@@ -1,10 +1,11 @@
 import { useAppContext } from "@/context/AppContextProvider";
+import { stake } from "@/controllers/useStack";
 import { useState } from "react";
 
 // earn with eth card
 export const EarnCard = () => {
   const [value, setValue] = useState("");
-  const { stacking, setStacking } = useAppContext()
+  const { stacking, setStacking, Lp } = useAppContext()
   return (
     <div className="p-2 sm:p-6 lg:p-8 space-y-4 sm:space-y-5 lg:space-y-8 flex flex-col items-center ">
       <div className="grid grid-cols-6 items-center bg-secondary py-6 lg:py-12 w-full max-w-lg sm:max-w-2xl rounded-2xl space-y-4 sm:space-y-6">
@@ -30,7 +31,12 @@ export const EarnCard = () => {
         </div>
         <div className="col-start-2 col-span-4  sm:col-start-3 sm:col-span-2 ">
           <div className="border text-center rounded-full  py-1 ">
-            <p>! week</p>
+            <select className="rounded-full bg-transparent text-center w-[80%]  ">
+              <option className="w-full text-center " value="uAzuki">
+                1 week
+              </option>
+            </select>
+
           </div>
         </div>
         <div className="col-start-2 space-y-3 col-span-4  sm:col-start-3 sm:col-span-2 ">
@@ -43,7 +49,11 @@ export const EarnCard = () => {
             <p className="text-sm">10/26/2022</p>
           </div>
         </div>
-        <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-[#B78E3E] ">
+        <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-[#B78E3E] " onClick={() => {
+          if (Lp) {
+            stake('1', 1, Lp)
+          }
+        }}>
           STAKE
         </button>
         <button

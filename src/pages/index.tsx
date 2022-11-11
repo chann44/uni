@@ -73,6 +73,7 @@ export const RenderNFT = ({ num }: RenderNum) => {
         unftData?.slice(0, num).map((nft: IuNFTData, index: number) => {
           return (
             <NFT
+              asset_address={nft.asset_address}
               id={nft.id}
               displayName={nft.display_name}
               floorPrice={nft.floor_price}
