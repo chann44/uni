@@ -183,64 +183,6 @@ export const ChartComponent = ({ data }: { data: HIstoryData[] }) => {
 
         window.addEventListener("resize", handleResize);
 
-  var toolTipWidth = 80;
-  var toolTipHeight = 80;
-  var toolTipMargin = 15;
-          chart.subscribeCrosshairMove(function (param) {
-    if (
-      param.point === undefined ||
-      !param.time ||
-      param.point.x < 0 ||
-      param.point.x > chartContainerRef.current.clientWidth ||
-      param.point.y < 0 ||
-      param.point.y > chartContainerRef.current.clientHeight
-    ) {
-      toolTip.current.style.display = "none";
-    } else {
-      console.log(param.time);
-      var dateStr = isBusinessDay(param.time)
-        ? businessDayToString(param.time)
-        : toDateString(new Date(param.time * 1000));
-      toolTip.current.style.display = "block";
-      var price: any = param.seriesPrices.get(newSeries);
-      let  sales: any = param.seriesPrices.get(histogram_series);
-      if (sales == undefined) {
-        sales = 0;
-      }
-      toolTip.current.innerHTML =
-        '<div class="tooltip-inside"> <div><img src="./img/ethereum-eth-logo 2.png" style="width: calc(15*0.9px);height:calc(20*0.9px);margin-left:calc(3*0.9px);"></div>&nbsp; ' +
-        Math.round(price * 100) / 100 +
-        "</div>" +
-        '<div style="margin:0 auto;text-align:center;"> Sales: ' +
-        sales +
-        "</div>" +
-        '<div style="margin:0 auto;text-align:center;font-size:calc(9*0.9px);">' +
-        dateStr +
-        "</div>";
-
-      var coordinate = newSeries.priceToCoordinate(price);
-
-      var shiftedCoordinate = param.point.x - 50;
-      // console.log(param)
-      if (coordinate === null) {
-        return;
-      }
-      shiftedCoordinate = Math.max(
-        0,
-        Math.min(chartContainerRef.current.clientWidth - toolTipWidth, shiftedCoordinate)
-      );
-      var coordinateY =
-        coordinate - toolTipHeight - toolTipMargin > 0
-          ? coordinate - toolTipHeight - toolTipMargin
-          : Math.max(
-              0,
-              Math.min(
-                chartContainerRef.current.clientHeight - toolTipHeight - toolTipMargin,
-                coordinate + toolTipMargin
-              )
-            );
-    }
-  });
         return () => {
             window.removeEventListener("resize", handleResize);
             chart.remove();

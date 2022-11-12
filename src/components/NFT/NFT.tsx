@@ -6,7 +6,7 @@ import { FaLink } from "react-icons/fa";
 import { Stats } from "../Header/Stats";
 import { processBuy, quoteBuy } from "../../controllers/useBuy"
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
-import { quoteSell } from "@/controllers/useSell";
+import { processSell, quoteSell } from "@/controllers/useSell";
 import { Loading } from "../Loading";
 
 
@@ -157,9 +157,10 @@ export const NFT = ({
             <div className="col-start-1 col-span-1 "></div>
             <div className="col-start-3 lg:col-start-2 col-span-6 ">
               <button className="w-full text-center text-xl lg:text-2xl text-blueText" onClick={() => {
-                if (address) {
+                if (address && signer) {
                   if (sell) {
                     console.log("we are gonna seel")
+                    processSell(uactualAmt, id, address, asset_address, signer)
                   } else {
                     console.log("we are gonna buy you know that")
                     processBuy(ethVal, {

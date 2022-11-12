@@ -1,11 +1,23 @@
 import { useAppContext } from "@/context/AppContextProvider";
 import { stake } from "@/controllers/useStack";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // earn with eth card
 export const EarnCard = () => {
   const [value, setValue] = useState("");
   const { stacking, setStacking, Lp } = useAppContext()
+  const [period, setPeriod] = useState<number>(1)
+
+
+const [unlockpDate, setunLockPeriod] = useState<number>(1)
+  useEffect(() => {
+    const addWeeksToDate = (dateObj,numberOfWeeks) => {
+  dateObj.setDate(dateObj.getDate()+ numberOfWeeks * 7);
+  return dateObj;
+}
+  setunLockPeriod(addWeeksToDate(new Date(), period).toISOString().split('T')[0]);
+  }, [period]) 
+
   return (
     <div className="p-2 sm:p-6 lg:p-8 space-y-4 sm:space-y-5 lg:space-y-8 flex flex-col items-center ">
       <div className="grid grid-cols-6 items-center bg-secondary py-6 lg:py-12 w-full max-w-lg sm:max-w-2xl rounded-2xl space-y-4 sm:space-y-6">
@@ -31,9 +43,23 @@ export const EarnCard = () => {
         </div>
         <div className="col-start-2 col-span-4  sm:col-start-3 sm:col-span-2 ">
           <div className="border text-center rounded-full  py-1 ">
-            <select className="rounded-full bg-transparent text-center w-[80%]  ">
-              <option className="w-full text-center " value="uAzuki">
+            <select onChange={(e) => {
+              setPeriod(Number(e.target.value))
+            }} className="rounded-full bg-transparent text-center w-[80%]  ">
+              <option className="w-full text-center " value={1}>
                 1 week
+              </option>
+     <option className="w-full text-center " value={5}>
+                5 week
+              </option>
+     <option className="w-full text-center " value={10}>
+                10 week
+              </option>
+     <option className="w-full text-center " value={35}>
+                35 week
+              </option>
+     <option className="w-full text-center " value={52}>
+                52 week
               </option>
             </select>
 
@@ -46,12 +72,12 @@ export const EarnCard = () => {
           </div>
           <div className="flex  justify-between">
             <p className="text-sm">Unlock Date: </p>
-            <p className="text-sm">10/26/2022</p>
+            <p className="text-sm">{unlockpDate}</p>
           </div>
         </div>
         <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-[#B78E3E] " onClick={() => {
           if (Lp) {
-            stake('1', 1, Lp)
+            stake(value, period, Lp)
           }
         }}>
           STAKE

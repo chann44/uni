@@ -11,8 +11,12 @@ export const toSqlDatetime = (inputDate) => {
   return dateWithOffest.toISOString().slice(0, 19).replace("T", "+");
 };
 
-export async function approve(productId, _addr, _amt, unftData) {
-  let txn = await unftData[productId][4].approve(
+export async function approve(productId, _addr, _amt, asset_address, abi, signer) {
+  // crreate a instance of ethes here 
+const instance = new ethers.Contract(asset_address, abi , signer)
+console.log(abi)
+console.log(instance)
+  let txn = await instance.approve(
     _addr,
     ethers.utils.parseEther(_amt)
   );
