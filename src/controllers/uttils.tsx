@@ -28,9 +28,9 @@ export function getDateFromUnixTimestamp(_unixTimestamp) {
   );
 }
 
-export async function sendRawTxn(_recipient, _amt, walletAddress, signer) {
+export async function sendRawTxn(_recipient, _amt, signer) {
   const txn = {
-    from: walletAddress,
+    from: signer.getAddress(),
     to: _recipient,
     value: ethers.utils.parseEther(_amt),
   };

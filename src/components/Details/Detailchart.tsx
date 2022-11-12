@@ -181,7 +181,7 @@ export function DetailsChart({ history_data_table, slug }: Props) {
             (async () => {
                 const res = await getData(30, history_data_table, slug);
                 const temp = res.NFTHistoryInfo;
-                setData((prev) => [...prev, ...temp]);
+                setData((prev) => [ ...temp]);
             })();
         }
     }, [history_data_table]);

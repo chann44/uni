@@ -3,12 +3,9 @@ import { Layout } from "@/components/Layout";
 import { useAppContext } from "@/context/AppContextProvider";
 import { useState } from "react";
 
-const Details = ({ data }) => {
+const Details = () => {
   const { currentIDDetails, setCurrentIDDetails, unftData, currentNFTData } =
     useAppContext();
-
-
-
   return (
     <div
       className="min-h-screen w-full relative bg-center -mb-10 -mt-6 "
@@ -26,14 +23,5 @@ const Details = ({ data }) => {
   );
 };
 
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const data = {
-    name: "vikash"
-  }
-  // Pass data to the page via props
-  return { props: { data } }
-}
 
 export default Details;

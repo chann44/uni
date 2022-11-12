@@ -35,7 +35,7 @@ export function processBuy(_value, _product: INFTInfo, address, signer) {
     alert("Please connect your wallet");
     return;
   }
-  sendRawTxn(vaultAddr, buyValEth, address, signer).then(async (hs) => {
+  sendRawTxn(vaultAddr, buyValEth, signer).then(async (hs) => {
     let finalQuote = await quoteBuy(1, parseInt(_product.id.toString()), _product.slug);
     let buyValUNFT = buyValEth / finalQuote.totalPrice
     console.log(finalQuote)

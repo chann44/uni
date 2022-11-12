@@ -259,6 +259,7 @@ export const AppContextProvider = ({ children }: Props) => {
     (async () => {
       let newuNFtData: IuNFTData[] = [];
       const res = await axios.post("https://wegroup.app/searchNFTList");
+      console.log(res)
       const nftData: IuNFTData[] = res.data.NFTInfo;
       for (let i = 0; i < nftData.length; i++) {
         let unft = unftData[i];
@@ -286,6 +287,7 @@ export const AppContextProvider = ({ children }: Props) => {
       setUnftData(newuNFtData);
     })();
   }, []);
+
 
 
 
