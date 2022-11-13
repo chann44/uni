@@ -47,6 +47,7 @@ function abbreviateNumber(number: number) {
 
 export const DetailsComponet = () => {
   const Days = [3, 7, 30, 90, 365];
+  const [activeDay, setActiveDay] = useState(Days[2])
   const {
     currentIDDetails,
     currentNFTData,
@@ -409,7 +410,9 @@ export const DetailsComponet = () => {
           </div>
           <div className="flex space-x-4">
             {Days.map((day: number) => {
-              return <p>{day}D</p>;
+              return <p onClick={() => {
+                  setActiveDay(day)
+              }} className={activeDay == day ? "underline cursor-pointer": "" + " cursor-pointer"}>{day}D</p>;
             })}
           </div>
         </div>
@@ -419,6 +422,7 @@ export const DetailsComponet = () => {
               <DetailsChart
                 history_data_table={currentNFTData?.history_data_table}
                 slug={currentNFTData?.slug}
+                time={activeDay}
               />
             ) : (
               <p>loading</p>

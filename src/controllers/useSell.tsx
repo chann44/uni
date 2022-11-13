@@ -15,7 +15,7 @@ import {uAzuki,
     2: uBeanz,
     3: uDoodles,
     4: uBoredApe,
-    uMoonBirds
+    5: uMoonBirds
   }
 
 export async function quoteSell(_unftNum: number, _nftId: number, slug: string) {

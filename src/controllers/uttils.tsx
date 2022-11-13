@@ -1,4 +1,4 @@
-import { stakingPeriods } from "@/context/AppContextProvider";
+import { Lp_Address, stakingPeriods } from "@/context/AppContextProvider";
 import { ethers } from "ethers";
 import { quoteBuy } from "./useBuy";
 import { quoteSell } from "./useSell";
@@ -17,7 +17,7 @@ const instance = new ethers.Contract(asset_address, abi , signer)
 console.log(abi)
 console.log(instance)
   let txn = await instance.approve(
-    _addr,
+    Lp_Address,
     ethers.utils.parseEther(_amt)
   );
   let hash = await txn.hash;

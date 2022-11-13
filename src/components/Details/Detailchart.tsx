@@ -214,20 +214,21 @@ const data = [
 interface Props {
     slug: string;
     history_data_table: string;
+    time: number
 }
 
-export function DetailsChart({ history_data_table, slug }: Props) {
+export function DetailsChart({ history_data_table, slug, time }: Props) {
     const [data, setData] = useState<HIstoryData[]>([]);
 
     useEffect(() => {
         if (history_data_table) {
             (async () => {
-                const res = await getData(30, history_data_table, slug);
+                const res = await getData(time, history_data_table, slug);
                 const temp = res.NFTHistoryInfo;
                 setData((prev) => [ ...temp]);
             })();
         }
-    }, [history_data_table]);
+    }, [history_data_table, time]);
 
     useEffect(() => { }, [data]);
 

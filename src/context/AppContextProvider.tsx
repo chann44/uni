@@ -201,13 +201,16 @@ interface IAppContext {
   currentNFTData: IuNFTData;
   Lp: any
 }
+
+
 const context = createContext({} as IAppContext);
 export const useAppContext = () => {
   return useContext(context);
 };
 
+  export const Lp_Address = "0xacf64aD70D1ED44d094b8816b10B3A76df001b3d";
+
 export const AppContextProvider = ({ children }: Props) => {
-  const Lp_Address = "0xacf64aD70D1ED44d094b8816b10B3A76df001b3d";
   const [address, setAddress] = useState("");
   const [provider, setProvider] = useState<any>();
   const [signer, setSigner] = useState<any>();
@@ -218,32 +221,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [stacking, setStacking] = useState<boolean>(false);
   const [currentNFTData, setCurrentNFTData] = useState<IuNFTData>();
   const [Lp, setLp] = useState<any>()
-  // useEffect(() => {
-  //   if (window.ethereum) {
-  //     
-  //   } else {
-  //     setProvider(new ethers.providers.Web3Provider(window.ethereum));
-  //     setSigner(Provider.getSigner());
 
-  //     const LP = new ethers.Contract(LP_Addr, LP_ABI, signer);
-  //     setuAzukiInstance(new ethers.Contract(uNFTData[1][1], uAzuki, signer));
-  //     setuBeanzInstance(new ethers.Contract(uNFTData[2][1], uBeanz, signer));
-  //     setuDoodlesInstance(
-  //       new ethers.Contract(uNFTData[3][1], uDoodles, signer)
-  //     );
-  //     setuBoredApeInstance(
-  //       new ethers.Contract(uNFTData[4][1], uBoredApe, signer)
-  //     );
-  //     setMoonBirdsInstance(
-  //       new ethers.Contract(uNFTData[5][1], uMoonBirds, signer)
-  //     );
-  //     setUnftData(unftData[1].push(uAzukiInstance));
-  //     setUnftData(unftData[2].push(uBeanzInstance));
-  //     setUnftData(uNFTData[3].push(uDoodlesInstance));
-  //     setUnftData(uNFTData[4].push(uBoredApeInstance));
-  //     setUnftData(uNFTData[5].push(uMoonBirdsInstance));
-  //   }
-  // }, []);
 
 
   useEffect(() => {

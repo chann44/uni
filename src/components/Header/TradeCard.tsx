@@ -25,7 +25,6 @@ export const TradeCard = () => {
   useEffect(() => {
     unftData.map((nft) => {
       if (nft.id == nftId) {
-
         setuNFTdataToBy((prev: any) => {
           return { ...prev, ...nft }
         })
@@ -140,7 +139,6 @@ export const TradeCard = () => {
         </div>
         <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText " onClick={() => {
           if (address === "") {
-
 
           }
         }}>
