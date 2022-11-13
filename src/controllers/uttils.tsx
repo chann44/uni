@@ -12,6 +12,7 @@ export const toSqlDatetime = (inputDate) => {
 };
 
 export async function approve(productId, _addr, _amt, asset_address, abi, signer) {
+  console.log(asset_address)
   // crreate a instance of ethes here 
 const instance = new ethers.Contract(asset_address, abi , signer)
 console.log(abi)

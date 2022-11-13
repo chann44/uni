@@ -48,6 +48,10 @@ export function processSell(_value, _product, address, asset_address, signer) {
     return;
   }
   approve(_product, approveAddr, sellVal, asset_address, Abis[productId], signer).then(async (hs) => {
+    console.log(hs)
+    console.log(productId)
+    console.log(address)
+    console.log(sellVal)
     const res = await axios("https://wegroup.app/sellNFT", {
       method: "POST",
        headers: {
@@ -61,7 +65,8 @@ export function processSell(_value, _product, address, asset_address, signer) {
         txHash: hs,
       }),
     });
-    if (res.status == 201) {
+    if (res.status >= 200) {
+      console.log(res)
       
     } else if (res.status == 501) {
       

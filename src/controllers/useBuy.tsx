@@ -24,7 +24,6 @@ export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
     poundage: res.data.UNftPriceInfo.poundage,
     premium: res.data.UNftPriceInfo.premiumFee,
   };
-  // return res.data
 }
 
 export function processBuy(_value, _product: INFTInfo, address, signer) {
@@ -38,13 +37,20 @@ export function processBuy(_value, _product: INFTInfo, address, signer) {
   sendRawTxn(vaultAddr, buyValEth, signer).then(async (hs) => {
     let finalQuote = await quoteBuy(1, parseInt(_product.id.toString()), _product.slug);
     let buyValUNFT = buyValEth / finalQuote.totalPrice
-    console.log(finalQuote)
-    console.log(buyValUNFT)
-    console.log(productId.id)
+    console.log(
+      {
+        userAddr: address,
+        unftId: _product.id.toString(),
+        unftNum: buyValUNFT.toString(),
+        nftId: _product.id.toString(),
+        txHash: hs,
+      }
+    )
     const res = await axios("https://wegroup.app/buyNFT", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        'Access-Control-Allow-Credentials':true
       },
       data: qs.stringify({
         userAddr: address,

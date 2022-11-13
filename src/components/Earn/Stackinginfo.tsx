@@ -1,5 +1,5 @@
 import { useAppContext } from "@/context/AppContextProvider";
-import { getStakeInfo } from "@/controllers/useStack";
+import { getDateFromUnixTimestamp } from "@/controllers/uttils";
 import { useEffect, useState } from "react";
 import {
   AiFillBank,
@@ -11,10 +11,45 @@ import {
 } from "react-icons/ai";
 
 export const StackingInfo = () => {
-  const { stacking, setStacking } = useAppContext();
+  const { stacking, setStacking , signer} = useAppContext();
   const [stakcininfo, setStackinginofo] = useState<any>();
   const [totalVal, setTotalVal] = useState(0)
   const { address, Lp } = useAppContext();
+
+  async function getStakeInfo(address, Lp) {
+  let result = [];
+  console.log(Lp)
+  let window: any
+  let account = await Lp.accounts(signer.getAddress());
+
+  let upIndex = parseInt(account._hex, 16);
+  console.log(upIndex)
+  for (let i = 0; i < upIndex; i++) {
+    let currentInd = `${i}`;
+    let reward = await Lp.getReward(address, currentInd);
+    let pricipal = await Lp.getPrincipal(address, currentInd);
+    let duration = await Lp.getDuration(address, currentInd);
+    let begTime = await Lp.getBegTime(address, currentInd);
+    let rewardFormatted = parseInt(reward._hex, 16) / 10 ** 18;
+    let pricipalFormatted = parseInt(pricipal._hex, 16) / 10 ** 18;
+    let unlockTimeFormatted = getDateFromUnixTimestamp(
+      parseInt(begTime._hex, 16) + parseInt(duration._hex, 16)
+    );
+    let begTimeFormatted = getDateFromUnixTimestamp(parseInt(begTime._hex, 16));
+    if (pricipalFormatted != 0) {
+      result.push([
+        currentInd,
+        pricipalFormatted,
+        begTimeFormatted,
+        unlockTimeFormatted,
+        rewardFormatted,
+      ]);
+    }
+  }
+  return result;
+}
+
+
   const fetchd = async () => {
     console.log("hii");
     console.log(Lp, "0xA3BCE4E423970ca35C4339500Cac0BC5c439CD29");
@@ -24,7 +59,8 @@ export const StackingInfo = () => {
   };
   useEffect(() => {
     console.log(address);
-    if (address) {
+    if (address && signer) {
+      console.log(signer.address)
       fetchd();
     }
   }, [Lp, address]);
