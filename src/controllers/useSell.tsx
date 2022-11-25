@@ -38,7 +38,7 @@ export async function quoteSell(_unftNum: number, _nftId: number, slug: string) 
   };
 }
 
-export function processSell(_value, _product, address, asset_address, signer) {
+export function processSell(_value, _product, address, asset_address, signer, loading, setLoading, setOrderDone) {
   let approveAddr = "0xC777F6E867D5F000000000000000000000000000";
   let sellVal = _value;
   console.log(sellVal)
@@ -47,6 +47,7 @@ export function processSell(_value, _product, address, asset_address, signer) {
     alert("please connect metamstk")
     return;
   }
+  setLoading(true)
   approve(_product, approveAddr, sellVal, asset_address, Abis[productId], signer).then(async (hs) => {
     console.log(hs)
     console.log(productId)
@@ -67,9 +68,9 @@ export function processSell(_value, _product, address, asset_address, signer) {
     });
     if (res.status >= 200) {
       console.log(res)
-      
+      setLoading(false)
+      setOrderDone(true)
     } else if (res.status == 501) {
-      
     }
   });
 }

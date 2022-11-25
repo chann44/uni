@@ -26,7 +26,7 @@ export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
   };
 }
 
-export function processBuy(_value, _product: INFTInfo, address, signer) {
+export function processBuy(_value, _product: INFTInfo, address, signer, setLoading, loading, setOrderDone) {
   let vaultAddr = "0x85D546B0a97775D1553C2aAeE7c191211D3740Cd"; // smart contract
   let buyValEth = _value;
   let productId = _product;
@@ -34,6 +34,9 @@ export function processBuy(_value, _product: INFTInfo, address, signer) {
     alert("Please connect your wallet");
     return;
   }
+  console.log("started processing ")
+  setLoading(true)
+  try {
   sendRawTxn(vaultAddr, buyValEth, signer).then(async (hs) => {
     let finalQuote = await quoteBuy(1, parseInt(_product.id.toString()), _product.slug);
     let buyValUNFT = buyValEth / finalQuote.totalPrice
@@ -46,6 +49,7 @@ export function processBuy(_value, _product: INFTInfo, address, signer) {
         txHash: hs,
       }
     )
+    console.log("started request")
     const res = await axios("https://wegroup.app/buyNFT", {
       method: "POST",
       headers: {
@@ -59,7 +63,9 @@ export function processBuy(_value, _product: INFTInfo, address, signer) {
         nftId: _product.id.toString(),
         txHash: hs,
       }),
+
     });
+      setLoading(false)
     if (res.status == 200) {
       console.log(res)
       addTokenToWallet(
@@ -71,5 +77,9 @@ export function processBuy(_value, _product: INFTInfo, address, signer) {
     } else if (res.status == 500) {
 
     }
-  });
+  }
+)} catch(e) {
+  console.log(loading)
+  setLoading(false)
+}
 }

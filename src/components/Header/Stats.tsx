@@ -14,24 +14,18 @@ interface INFTInfo {
 
 export const Stats = ({ floorPrice, variation, displayName, slug, history_data_table }: INFTInfo) => {
   const [historydata, setHistoryData] = useState<HIstoryData[]>()
-  useEffect(() => {
-    (
-      async () => {
-
-        const res = await getData(7, history_data_table, slug)
-
-        setHistoryData((prev: any) => {
-          return res.NFTHistoryInfo
-        }
-        )
-      }
-    )()
-  }, [history_data_table])
-
 
   useEffect(() => {
+    console.log("new branch is here ")
 
-  }, [historydata])
+    if (history_data_table) {
+        (async () => {
+            const res = await getData(30, history_data_table, slug);
+            const temp = res.NFTHistoryInfo;
+            setHistoryData((prev) => [ ...temp]);
+        })();
+    }
+}, [history_data_table]);
 
 
   return (

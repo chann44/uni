@@ -1,5 +1,6 @@
 import { DetailsComponet } from "@/components/Details";
 import { Layout } from "@/components/Layout";
+import Example from "@/components/testchart";
 import { useAppContext } from "@/context/AppContextProvider";
 import { useState } from "react";
 
