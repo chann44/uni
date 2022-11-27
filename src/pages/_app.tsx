@@ -6,13 +6,13 @@ import {
   PointElement,
   Title,
 } from "chart.js";
+import { trpc } from '../utils/trpc';
 import type { AppProps } from "next/app";
 import "../styles/globals.css"
-import { AppContextProvider, useAppContext } from "@/context/AppContextProvider";
+import { AppContextProvider,  } from "@/context/AppContextProvider";
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { popup } = useAppContext()
   return (
     <AppContextProvider>
       <div className="bg-primary text-white">
@@ -21,5 +21,5 @@ function MyApp({ Component, pageProps }: AppProps) {
     </AppContextProvider>
   );
 }
-
-export default MyApp;
+export default trpc.withTRPC( MyApp);
+  

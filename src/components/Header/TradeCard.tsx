@@ -1,48 +1,46 @@
-import { IuNFTData, useAppContext } from "@/context/AppContextProvider";
+import { useAppContext } from "@/context/AppContextProvider";
 import { quoteBuy } from "@/controllers/useBuy";
 import { quoteSell } from "@/controllers/useSell";
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
 import { Swap } from "@/pages";
+import { INFTDetail } from "@/types";
+import { trpc } from "@/utils/trpc";
 import { useEffect, useState } from "react";
 import { AiOutlineInfo } from "react-icons/ai";
 
 interface feesData {
-  totalPrice: number,
-  transferFess: number,
-  poundage: number,
-  premium: number
+  totalPrice: number;
+  transferFess: number;
+  poundage: number;
+  premium: number;
 }
 
 export const TradeCard = () => {
   const [nftId, setnftID] = useState(1);
-  const [unftDataToby, setuNFTdataToBy] = useState<IuNFTData>();
-  const [uactualAmt, setuActualAmt] = useState<string>("")
-  const [ethVal, setEthVal] = useState<string>("")
-  const [data, setData] = useState<feesData>()
-  const [sell, setSell] = useState<boolean>(false)
-  const { address, setPopup, popup, unftData } = useAppContext()
+  const [unftDataToby, setuNFTdataToBy] = useState<INFTDetail>();
+  const [uactualAmt, setuActualAmt] = useState<string>("");
+  const [ethVal, setEthVal] = useState<string>("");
+  const [ndata, setData] = useState<feesData>();
+  const [sell, setSell] = useState<boolean>(false);
+  const { address, setPopup, popup } = useAppContext();
+  const { data, isLoading, isError } = trpc.nftList.useQuery();
+  if (isLoading) return <div>loaiding ...</div>;
 
   useEffect(() => {
-    unftData.map((nft) => {
-      if (nft.id == nftId) {
-        setuNFTdataToBy((prev: any) => {
-          return { ...prev, ...nft }
-        })
-        return
+    (
+     async  () => {
+         const data = await quoteBuy(
+                1,
+                1,
+                "azuki"              );
+              setData((prev: any) => {
+                return { ...data };
+              });
       }
-    })
-  }, [nftId, unftData])
+    )()
 
-  useEffect(() => {
-    (async () => {
-      if (unftDataToby) {
-        const data = await quoteBuy(1, unftDataToby.id, unftDataToby.slug)
-        setData((prev: any) => {
-          return { ...data }
-        })
-      }
-    })()
-  }, [unftDataToby, nftId, unftData])
+  }, [])
+
 
   return (
     <div className="col-start-1 col-span-6 sm:col-start-1 sm:col-span-3 flex flex-col items-center space-y-4 ">
@@ -52,32 +50,46 @@ export const TradeCard = () => {
       <div className="flex flex-col items-center  w-full max-w-[240px] space-y-4">
         <div className="rounded-full  w-full text-center p-1  bg-transparent border">
           <select
-            onChange={(e: any) => {
+            onChange={async (e: any) => {
+              const nftDatatoBuy = JSON.parse(e.target.value);
+              setuNFTdataToBy((prev: any) => {
+                return {...prev, ...nftDatatoBuy}
+              })
+              const data = await quoteBuy(
+                1,
+                nftDatatoBuy.id,
+                nftDatatoBuy.slug
+              );
+              setData((prev: any) => {
+                return { ...data };
+              });
 
-              setnftID(e.target.value);
-              setEthVal("")
-              setuActualAmt("")
+              setEthVal("");
+              setuActualAmt("");
             }}
             className="rounded-full w-[80%]   text-center  bg-transparent "
           >
-            {unftData &&
-              unftData?.map((nft: IuNFTData, index: number) => {
-                return (
-                  <option
-                    selected={index == 0 && true}
-                    className="w-full text-center "
-                    value={nft.id}
-                  >
-                    {"u" + nft.display_name}
-                  </option>
-                );
-              })}
+            {data.data?.map((nft, index: number) => {
+              return (
+                <option
+                  selected={index == 0 && true}
+                  className="w-full text-center "
+                  value={JSON.stringify(nft)}
+                >
+                  {"u" + nft.display_name}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="col-start-1 col-span-6 grid grid-cols-6 items-center space-y-4">
           <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
             <div className="w-4 ">
-              <img className="object-cover" src={sell ? unftDataToby.img : "/eth.png"} alt="" />
+              <img
+                className="object-cover"
+                src={sell ? unftDataToby.img : "/eth.png"}
+                alt=""
+              />
             </div>
             <input
               placeholder={sell ? "you recive" : "you send"}
@@ -86,27 +98,45 @@ export const TradeCard = () => {
               value={sell ? uactualAmt : ethVal}
               onChange={async (e) => {
                 if (sell) {
-                  setuActualAmt(e.target.value)
-                  const data = await quoteSell(Number(e.target.value), unftDataToby.id, unftDataToby.slug)
-                  setEthVal(data.total_price.toFixed(4))
+                  setuActualAmt(e.target.value);
+                  const data = await quoteSell(
+                    Number(e.target.value),
+                    unftDataToby.id,
+                    unftDataToby.slug
+                  );
+                  setEthVal(data.total_price.toFixed(4));
                 } else {
-                  setEthVal(e.target.value)
-                  const data = await getAmtFromEth(1, unftDataToby.id, unftDataToby.slug, Number(e.target.value))
-                  setuActualAmt(data.toFixed(5))
+                  setEthVal(e.target.value);
+                  const data = await getAmtFromEth(
+                    1,
+                    unftDataToby.id,
+                    unftDataToby.slug,
+                    Number(e.target.value)
+                  );
+                  setuActualAmt(data.toFixed(5));
                 }
               }}
             />
           </div>
-          <div className="col-start-1 col-span-6 flex justify-center" onClick={() => {
-            setEthVal("")
-            setuActualAmt("")
-          }}>
+          <div
+            className="col-start-1 col-span-6 flex justify-center"
+            onClick={() => {
+              setEthVal("");
+              setuActualAmt("");
+            }}
+          >
             <Swap swap={sell} setSwap={setSell} />
           </div>
           <div className="col-start-1 col-span-6 bg-white rounded-full flex items-center px-3 space-x-1 ">
-            <div className="w-4 h-4 rounded-full
-              ">
-              <img className="object-cover rounded-full" src={sell ? "/eth.png" : unftDataToby?.img} alt="" />
+            <div
+              className="w-4 h-4 rounded-full
+              "
+            >
+              <img
+                className="object-cover rounded-full"
+                src={sell ? "/eth.png" : unftDataToby?.img}
+                alt=""
+              />
             </div>
             <input
               placeholder={sell ? "you send" : "you recive"}
@@ -114,13 +144,22 @@ export const TradeCard = () => {
               className="w-full text-black py-1 border-none focus:outline-none focus:border-none rounded-full  placeholder:text-gray-800 "
               onChange={async (e) => {
                 if (sell) {
-                  setEthVal(e.target.value)
-                  const data = await getSellAmtFromEth(1, unftDataToby.id, unftDataToby.slug, Number(e.target.value))
-                  setuActualAmt(data.toFixed(5))
+                  setEthVal(e.target.value);
+                  const data = await getSellAmtFromEth(
+                    1,
+                    unftDataToby.id,
+                    unftDataToby.slug,
+                    Number(e.target.value)
+                  );
+                  setuActualAmt(data.toFixed(5));
                 } else {
-                  setuActualAmt(e.target.value)
-                  const data = await quoteBuy(Number(e.target.value), unftDataToby.id, unftDataToby.slug)
-                  setEthVal(data.totalPrice.toFixed(4))
+                  setuActualAmt(e.target.value);
+                  const data = await quoteBuy(
+                    Number(e.target.value),
+                    unftDataToby.id,
+                    unftDataToby.slug
+                  );
+                  setEthVal(data.totalPrice.toFixed(4));
                 }
               }}
               value={sell ? ethVal : uactualAmt}
@@ -129,22 +168,26 @@ export const TradeCard = () => {
         </div>
         <div className="w-full">
           <div className="flex justify-between">
-            <p className="text-xs">1 {unftDataToby?.display_name}  :</p>
-            <p className="text-sm">{data?.totalPrice}</p>
+            <p className="text-xs">1 {unftDataToby?.display_name} :</p>
+            <p className="text-sm">{ndata?.totalPrice}</p>
           </div>
           <div className="flex  justify-between">
             <p className="text-sm">fees included: </p>
-            <p className="text-sm"><AiOutlineInfo className="font-extrabold text-blueText text-xl" /></p>
+            <p className="text-sm">
+              <AiOutlineInfo className="font-extrabold text-blueText text-xl" />
+            </p>
           </div>
         </div>
-        <button className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText " onClick={() => {
-          if (address === "") {
-
-          }
-        }}>
+        <button
+          className="col-start-1 col-end-7 text-lg  sm:text-2xl text-blueText "
+          onClick={() => {
+            if (address === "") {
+            }
+          }}
+        >
           {sell ? "TRADE" : "BUY"}
         </button>
       </div>
-    </div >
+    </div>
   );
 };

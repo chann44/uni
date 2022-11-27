@@ -1,7 +1,6 @@
 import axios from "axios";
 import { addTokenToWallet, sendRawTxn } from "./uttils";
 import qs from "qs"
-import { IuNFTData } from "@/context/AppContextProvider";
 import { INFTInfo } from "@/components/NFT/NFT";
 
 export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {

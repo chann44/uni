@@ -1,9 +1,7 @@
-import { IuNFTData } from "@/context/AppContextProvider";
 import { getData } from "@/controllers/useNFTHistory";
 import { HIstoryData } from "@/controllers/uttils";
-import { Tooltip } from "chart.js";
-import { createChart, ColorType, isBusinessDay } from "lightweight-charts";
-import React, { useEffect, useRef, useState } from "react";
+import { createChart } from "lightweight-charts";
+import  { useEffect, useRef, useState } from "react";
 
 
 

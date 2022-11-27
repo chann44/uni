@@ -3,11 +3,12 @@ import { EarnCard } from "@/components/Earn";
 import { Layout } from "@/components/Layout";
 import { NFTCard } from "@/components/Header";
 import { NFT } from "@/components/NFT/NFT";
-import { useAppContext, IuNFTData } from "@/context/AppContextProvider";
+import { useAppContext } from "@/context/AppContextProvider";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { MetaMaskPopup } from "@/components/MetamaskPopup";
 import { StackingInfo } from "@/components/Earn/Stackinginfo";
+import { trpc } from "@/utils/trpc";
 
 // title for earn card on the homepage
 const EarnCardTitle = () => {
@@ -65,12 +66,13 @@ export const Swap = ({ setSwap, swap }: { swap: boolean, setSwap: Dispatch<SetSt
 };
 
 export const RenderNFT = ({ num }: RenderNum) => {
-  const { unftData } = useAppContext();
+  const {data, isLoading, isError}  = trpc.nftList.useQuery()
+  if(isLoading) return <div>loaiding ...</div>
 
   return (
     <>
-      {unftData &&
-        unftData?.slice(0, num).map((nft: IuNFTData, index: number) => {
+      {data.data? 
+        data.data?.slice(0, num).map((nft, index: number) => {
           return (
             <NFT
               asset_address={nft.uasset_contract_address}
@@ -84,7 +86,8 @@ export const RenderNFT = ({ num }: RenderNum) => {
               history_data_table={nft.history_data_table}
             />
           );
-        })}
+        }): null
+      }
     </>
   );
 };
@@ -92,9 +95,6 @@ export const RenderNFT = ({ num }: RenderNum) => {
 // this is the home page
 const Index = () => {
   const { popup, stacking } = useAppContext()
-  useEffect(() => {
-
-  }, [popup])
 
   return (
     <Layout>

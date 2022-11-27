@@ -1,7 +1,5 @@
 import { EarnCard } from "@/components/Earn";
 import { Layout } from "@/components/Layout";
-import { useAppContext } from "@/context/AppContextProvider";
-import { useEffect } from "react";
 
 const Earn = () => {
  

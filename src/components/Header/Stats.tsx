@@ -2,7 +2,6 @@ import { getData } from "@/controllers/useNFTHistory";
 import { HIstoryData } from "@/controllers/uttils";
 import { useEffect, useState } from "react";
 import { LineChart } from "../lineChart";
-import { Loading } from "../Loading";
 
 interface INFTInfo {
   floorPrice: number;
@@ -14,12 +13,11 @@ interface INFTInfo {
 
 export const Stats = ({ floorPrice, variation, displayName, slug, history_data_table }: INFTInfo) => {
   const [historydata, setHistoryData] = useState<HIstoryData[]>()
-
   useEffect(() => {
-    console.log("new branch is here ")
 
     if (history_data_table) {
         (async () => {
+          console.log("historydataatble", history_data_table)
             const res = await getData(30, history_data_table, slug);
             const temp = res.NFTHistoryInfo;
             setHistoryData((prev) => [ ...temp]);
@@ -28,11 +26,13 @@ export const Stats = ({ floorPrice, variation, displayName, slug, history_data_t
 }, [history_data_table]);
 
 
+console.log(historydata)
+
+
   return (
     <>
-      {/* chart and floor price stats */}
       {
-        historydata && <>
+        historydata ?  <>
           <div className="col-start-1 col-span-2 ">
             <p className="text-text text-xs mb-3">{displayName} floor price</p>
             <p className="text-xs text-pink ">{variation} %</p>
@@ -48,6 +48,7 @@ export const Stats = ({ floorPrice, variation, displayName, slug, history_data_t
             <LineChart Data={historydata} />
           </div>
         </>
+          : null
       }
     </>
   );
