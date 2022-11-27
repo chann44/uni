@@ -1,7 +1,7 @@
 import axios from "axios";
 import { addTokenToWallet, sendRawTxn } from "./uttils";
 import qs from "qs"
-import { INFTInfo } from "@/components/NFT/NFT";
+import { INFTInfo } from "@/types";
 
 export async function quoteBuy(_unftNum: number, _nftId: number, slug: string) {
 
@@ -65,6 +65,7 @@ export function processBuy(_value, _product: INFTInfo, address, signer, setLoadi
 
     });
       setLoading(false)
+      setOrderDone(true)
     if (res.status == 200) {
       console.log(res)
       addTokenToWallet(

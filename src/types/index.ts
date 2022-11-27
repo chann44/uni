@@ -53,3 +53,16 @@ export interface INFTListItem {
     sales_7d_lowest_price: number;
     sales_7d_lowest_price_variation: number;
   }
+
+
+export interface INFTInfo {
+  id: number;
+  name: string;
+  slug: string;
+  img: string;
+  floorPrice: number;
+  variation: number;
+  displayName: string;
+  history_data_table: string;
+  asset_address: string;
+}

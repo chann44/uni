@@ -44,7 +44,6 @@ interface UNQ {
 
 export const ChartComponent = ({ data }: { data: HIstoryData[] }) => {
     const chartContainerRef = useRef(null);
-    const toolTip = useRef(null);
     useEffect(() => {
         const chartData = data?.map((data: HIstoryData) => {
             return {
@@ -189,7 +188,6 @@ export const ChartComponent = ({ data }: { data: HIstoryData[] }) => {
 
     return  (
    <div>
-    <div className="border w-[80px]" ref={toolTip}></div>
     <div ref={chartContainerRef} />;
    </div>
     )

@@ -24,24 +24,17 @@ export const TradeCard = () => {
   const [sell, setSell] = useState<boolean>(false);
   const { address, setPopup, popup } = useAppContext();
   const { data, isLoading, isError } = trpc.nftList.useQuery();
-  if (isLoading) return <div>loaiding ...</div>;
 
   useEffect(() => {
-    (
-     async  () => {
-         const data = await quoteBuy(
-                1,
-                1,
-                "azuki"              );
-              setData((prev: any) => {
-                return { ...data };
-              });
-      }
-    )()
+    (async () => {
+      const data = await quoteBuy(1, 1, "azuki");
+      setData((prev: any) => {
+        return { ...data };
+      });
+    })();
+  }, []);
 
-  }, [])
-
-
+  if (isLoading) return <div>loaiding ...</div>;
   return (
     <div className="col-start-1 col-span-6 sm:col-start-1 sm:col-span-3 flex flex-col items-center space-y-4 ">
       <h1 className="text-center lg:text-left w-full py-2 lg:px-8 lg:py-3 text-lg sm:text-xl lg:text-2xl font-semibold">
@@ -53,8 +46,8 @@ export const TradeCard = () => {
             onChange={async (e: any) => {
               const nftDatatoBuy = JSON.parse(e.target.value);
               setuNFTdataToBy((prev: any) => {
-                return {...prev, ...nftDatatoBuy}
-              })
+                return { ...prev, ...nftDatatoBuy };
+              });
               const data = await quoteBuy(
                 1,
                 nftDatatoBuy.id,

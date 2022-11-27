@@ -7,6 +7,7 @@ import { Stats } from "../Header/Stats";
 import { processBuy, quoteBuy } from "../../controllers/useBuy";
 import { getAmtFromEth, getSellAmtFromEth } from "@/controllers/uttils";
 import { processSell, quoteSell } from "@/controllers/useSell";
+import { INFTInfo } from "@/types";
 
 export const Spinner = ({
   width,
@@ -51,21 +52,6 @@ export const BuyLoading = ({ str }: LProps) => {
   );
 };
 
-export const OrderDone = () => {
-  return <div></div>;
-};
-
-export interface INFTInfo {
-  id: number;
-  name: string;
-  slug: string;
-  img: string;
-  floorPrice: number;
-  variation: number;
-  displayName: string;
-  history_data_table: string;
-  asset_address: string;
-}
 
 export const NFT = ({
   id,
